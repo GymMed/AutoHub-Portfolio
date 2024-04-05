@@ -1,0 +1,31 @@
+{
+    "nav": {
+        "Home": "Namai",
+        "Projects": "Projektai",
+        "Register": "Registracija",
+        "Login": "Prisijungimas"
+    },
+    "pages": {
+        "projects": {
+            "createdAt": "Sukurta:",
+            "updatedAt": "Atnaujinta:",
+            "pushedAt": "Pakitimai:"
+        },
+        "projectView": {
+            "images": "Nuotraukos:",
+            "gifs": "Gifs:"
+        },
+        "404": {
+            "pageNotFound": "Puslapis nerastas!",
+            "pageYouLookingFor": "Atsiprašome, puslapis, kurio ieškote, gali būti nepasiekiamas arba jo nėra. ",
+            "checkUrl": "Patikrinkite, ar URL adrese nėra rašybos klaidų, arba pabandykite grįžti į ",
+            "homePage": "pradinį puslapį",
+            "visitUsLater": "Nedvejodami apsilankykite pas mus vėliau. Ačiū už supratingumą.",
+            "goHome": "Grįžti į pagrindinį puslapį"
+        }
+    },
+    "footer": {
+        "findMe": "Raskite Mane:",
+        "service": "2024 profesionalios programinės įrangos kūrimo paslaugos"
+    }
+}

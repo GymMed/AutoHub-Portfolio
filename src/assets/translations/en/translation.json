@@ -1,0 +1,31 @@
+{
+    "nav": {
+        "Home": "Home",
+        "Projects": "Projects",
+        "Register": "Register",
+        "Login": "Login"
+    },
+    "pages": {
+        "projects": {
+            "createdAt": "Created At:",
+            "updatedAt": "Updated At:",
+            "pushedAt": "Pushed At:"
+        },
+        "projectView": {
+            "images": "Images:",
+            "gifs": "Gifs:"
+        },
+        "404": {
+            "pageNotFound": "Page Not Found",
+            "pageYouLookingFor": "Sorry, the page you are looking for might be unavailable or does not exist.",
+            "checkUrl": "Please check the URL for typos or try navigating back to the ",
+            "homePage": "home page",
+            "visitUsLater": "Feel free to visit us later. Thank you for your understanding.",
+            "goHome": "Go Home"
+        }
+    },
+    "footer": {
+        "findMe": "Find Me:",
+        "service": "2024 professional software development services"
+    }
+}
