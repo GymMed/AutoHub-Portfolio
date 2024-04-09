@@ -7,6 +7,13 @@
     },
     "pages": {
         "projects": {
+            "filter": {
+                "projectsAvailable": "Filtered projects available for public:",
+                "search": "Search . . .",
+                "stack": "Stack:",
+                "languages": "Languages:",
+                "size": "Size:"
+            },
             "createdAt": "Created At:",
             "updatedAt": "Updated At:",
             "pushedAt": "Pushed At:"
@@ -27,5 +34,12 @@
     "footer": {
         "findMe": "Find Me:",
         "service": "2024 professional software development services"
+    },
+
+    "projectsStackEnum": {
+        "None": "None"
+    },
+    "projectsSizesEnum": {
+        "All": "All"
     }
 }

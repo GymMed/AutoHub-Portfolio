@@ -1,15 +1,11 @@
 import { APP_NAME } from "../../utils/constants";
-import LanguageSelect from "../General/LanguageSelect";
 import Navigation from "./Navigation/Navigation";
 import LeftSvg from "../../../src/assets/icons/Left.svg";
 import RightSvg from "../../../src/assets/icons/Right.svg";
-import SunSvg from "../../../src/assets/icons/lightModes/Sun.svg";
-import MoonSvg from "../../../src/assets/icons/lightModes/Moon.svg";
 import { useSidebarStateContext } from "../General/Contexts/SidebarStateProvider";
 
 function Sidebar() {
-    const { isOpened, setIsOpened, isDark, setIsDark } =
-        useSidebarStateContext();
+    const { isOpened, setIsOpened } = useSidebarStateContext();
 
     function getClassBasedOnSidebar(isOpened: boolean): string {
         if (isOpened) return "w-64 min-w-64 ";
@@ -51,15 +47,15 @@ function Sidebar() {
                     <Navigation />
                 </div>
                 <div className="font-semibold flex flex-col gap-3">
-                    <div
+                    {/* <div
                         className={
                             (isOpened ? "opacity-100" : "opacity-0") +
                             " transition-opacity duration-500 w-full flex items-center justify-center"
                         }
                     >
                         <LanguageSelect />
-                    </div>
-                    <div className="p-[0.25rem]">
+                    </div> */}
+                    {/* <div className="p-[0.25rem]">
                         <button
                             type="button"
                             className="rounded p-2 font-bold text-primary-500 hover:bg-primary-500 hover:text-white focus:ring focus:ring-offset-2 focus:ring-primary-500"
@@ -71,7 +67,7 @@ function Sidebar() {
                                 <MoonSvg className="w-6 h-6" />
                             )}
                         </button>
-                    </div>
+                    </div> */}
                     <div className="px-1.5 justify-end flex w-full">
                         <button
                             type="button"

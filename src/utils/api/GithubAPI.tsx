@@ -1,12 +1,16 @@
 class GithubApi {
     static name = "gymmed";
 
-    static getSortedRepositories(): string {
-        return `${GithubApi.getRepositories()}/sort=created&direction=desc`;
+    static getUser(name: string): string {
+        return `https://api.github.com/users/${name}`;
     }
 
-    static getRepositories(): string {
-        return `https://api.github.com/users/${GithubApi.name}/repos`;
+    static getSortedRepositories(page: number = 1): string {
+        return `${GithubApi.getRepositories(page)}&sort=created&direction=desc`;
+    }
+
+    static getRepositories(page: number = 1): string {
+        return `https://api.github.com/users/${GithubApi.name}/repos?page=${page}`;
     }
 
     static getPagesBase(): string {

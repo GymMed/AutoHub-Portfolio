@@ -7,6 +7,7 @@ import { AVAILABLE_ROUTES } from "./utils/constants";
 import { ROUTES_ENUM } from "./enums/RoutesEnums";
 import Projects from "./components/Routes/Projects/Projects";
 import ProjectView from "./components/Routes/ProjectView/ProjectView";
+import { OwnerProvider } from "./components/General/Contexts/OwnerProvider";
 
 const router = createBrowserRouter([
     {
@@ -29,9 +30,11 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <SidebarStateProvider>
-            <RouterProvider router={router} />
-        </SidebarStateProvider>
+        <OwnerProvider>
+            <SidebarStateProvider>
+                <RouterProvider router={router} />
+            </SidebarStateProvider>
+        </OwnerProvider>
     );
 }
 export default App;

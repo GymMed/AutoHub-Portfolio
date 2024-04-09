@@ -4,8 +4,11 @@ export enum FRAMEWORKS_ENUM {
     Expressjs,
     Alpinejs,
     React,
+    Vue,
     Tailwind,
     Bootstrap,
+    AndroidStudio,
+    NetWinForms,
 }
 
 export const FrameworksNames = [
@@ -14,6 +17,9 @@ export const FrameworksNames = [
     "Express js",
     "Alpine js",
     "React",
+    "Vue",
     "Tailwind",
     "Bootstrap",
+    "Android Studio",
+    "Win Forms",
 ];

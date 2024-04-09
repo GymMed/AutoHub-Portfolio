@@ -1,0 +1,130 @@
+import PaginationButton from "./PaginationButton";
+import LeftSvg from "../../assets/icons/Left.svg";
+import RightSvg from "../../assets/icons/Right.svg";
+import { PaginationDataInterface } from "../../interfaces/Pagination/PaginationDataInterface";
+
+interface PaginatorInterface {
+    paginationData: PaginationDataInterface;
+    setPaginationData: (data: PaginationDataInterface) => void;
+    totalPaginationLinksForSide: number;
+    totalPages: number;
+}
+
+function Paginator({
+    paginationData,
+    setPaginationData,
+    totalPaginationLinksForSide,
+    totalPages,
+}: PaginatorInterface) {
+    function getLeftSide() {
+        if (paginationData.activePage < totalPaginationLinksForSide) {
+            return paginationData.activePage;
+        }
+
+        return totalPaginationLinksForSide;
+    }
+
+    const leftSide = getLeftSide();
+
+    function getRightSide(leftSide: number) {
+        const totalPageSteps =
+            totalPaginationLinksForSide +
+            (totalPaginationLinksForSide - leftSide);
+
+        //+1 cuz shown from 1 and totalPages is ceil but array starts 0
+        const activePage = paginationData.activePage + 1;
+        if (activePage + totalPageSteps > totalPages) {
+            return totalPages - activePage;
+        }
+
+        return totalPageSteps;
+    }
+    const rightSide = getRightSide(leftSide);
+    // const RightToLeft = leftSide + (totalPaginationLinksForSide - rightSide);
+    // const addedRightToLeftSide = RightToLeft > -1 ? RightToLeft : 0;
+    const addedRightToLeftSide =
+        leftSide >= totalPaginationLinksForSide
+            ? leftSide + (totalPaginationLinksForSide - rightSide)
+            : leftSide;
+
+    return (
+        <div className="w-full flex gap-3 items-center justify-center mb-7">
+            {addedRightToLeftSide > 0 && (
+                <PaginationButton
+                    isRounded={true}
+                    onClick={() => {
+                        setPaginationData({
+                            ...paginationData,
+                            activePage:
+                                paginationData.activePage > 0
+                                    ? paginationData.activePage - 1
+                                    : 0,
+                        });
+                    }}
+                >
+                    <LeftSvg className="w-6 h-6" />
+                </PaginationButton>
+            )}
+            {addedRightToLeftSide > 0 &&
+                [...Array(addedRightToLeftSide)].map((value, key) => {
+                    return (
+                        <PaginationButton
+                            key={key}
+                            onClick={() => {
+                                setPaginationData({
+                                    ...paginationData,
+                                    activePage:
+                                        paginationData.activePage -
+                                        addedRightToLeftSide +
+                                        key,
+                                });
+                            }}
+                        >
+                            {paginationData.activePage -
+                                addedRightToLeftSide +
+                                key +
+                                1}
+                        </PaginationButton>
+                    );
+                })}
+            <PaginationButton isActive={true}>
+                {paginationData?.activePage
+                    ? paginationData?.activePage + 1
+                    : 1}
+            </PaginationButton>
+            {[...Array(rightSide)].map((value, key) => {
+                return (
+                    <PaginationButton
+                        key={key}
+                        onClick={() => {
+                            setPaginationData({
+                                ...paginationData,
+                                activePage: key + paginationData.activePage + 1,
+                            });
+                        }}
+                    >
+                        {key + paginationData.activePage + 2}
+                    </PaginationButton>
+                );
+            })}
+            {rightSide > 0 && (
+                <PaginationButton
+                    isRounded={true}
+                    onClick={() => {
+                        setPaginationData({
+                            ...paginationData,
+                            activePage:
+                                paginationData.activePage + 1 >= totalPages
+                                    ? paginationData.activePage
+                                    : paginationData.activePage + 1,
+                        });
+                    }}
+                >
+                    <RightSvg className="w-6 h-6" />
+                </PaginationButton>
+            )}
+        </div>
+    );
+}
+
+export default Paginator;

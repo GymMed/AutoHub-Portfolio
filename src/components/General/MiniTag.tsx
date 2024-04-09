@@ -1,17 +1,29 @@
+import { ReactNode } from "react";
+
 interface MiniTagInterface {
-    framework: string;
+    isActive?: boolean;
+    icon?: ReactNode;
+    name: string;
     onClick?: () => void;
 }
 
-function MiniTag({ framework, onClick }: MiniTagInterface) {
+function MiniTag({ name, onClick, icon, isActive = false }: MiniTagInterface) {
     return (
         <div
-            className="text-xs px-2 py-1 rounded-full font-bold bg-gradient-to-br from-accent-500 to-accent-600 hover:from-accent-700 hover:to-accent-800 focus:ring focus:ring-offset-2 focus:ring-accent-500"
-            onClick={() => {
-                if (onClick) onClick;
+            className={
+                (isActive
+                    ? "border-2 border-accent-500 from-accent-700 to-accent-800 hover:from-dark-eval-2 hover:to-dark-eval-1 "
+                    : "from-accent-500 to-accent-600 hover:from-accent-700 hover:to-accent-800 ") +
+                "flex items-center text-xs px-2 py-1 rounded-full font-bold bg-gradient-to-br  focus:ring focus:ring-offset-2 focus:ring-accent-500"
+            }
+            onClick={(event) => {
+                event.stopPropagation();
+
+                if (onClick) onClick();
             }}
         >
-            {framework}
+            {icon}
+            {name}
         </div>
     );
 }

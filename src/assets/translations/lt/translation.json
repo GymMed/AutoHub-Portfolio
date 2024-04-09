@@ -7,6 +7,13 @@
     },
     "pages": {
         "projects": {
+            "filter": {
+                "projectsAvailable": "Išfiltruoti paviešinti produktai:",
+                "search": "Ieškoti . . .",
+                "stack": "Karkasai:",
+                "languages": "Kalbos:",
+                "size": "Dydis:"
+            },
             "createdAt": "Sukurta:",
             "updatedAt": "Atnaujinta:",
             "pushedAt": "Pakitimai:"
@@ -27,5 +34,12 @@
     "footer": {
         "findMe": "Raskite Mane:",
         "service": "2024 profesionalios programinės įrangos kūrimo paslaugos"
+    },
+
+    "projectsStackEnum": {
+        "None": "Nėra"
+    },
+    "projectsSizesEnum": {
+        "All": "Visi"
     }
 }
