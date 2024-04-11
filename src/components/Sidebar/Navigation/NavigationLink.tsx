@@ -42,7 +42,7 @@ export default function NavigationLink({
                         <div
                             className={
                                 (isOpened ? "opacity-100 " : "opacity-0 ") +
-                                "duration-1000 transition-opacity"
+                                "duration-1000 transition-opacity text-nowrap"
                             }
                         >
                             {text}

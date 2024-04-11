@@ -16,6 +16,9 @@ function Paginator({
     totalPaginationLinksForSide,
     totalPages,
 }: PaginatorInterface) {
+    const scrollType: ScrollBehavior = "smooth";
+    const scrollOptions = { behavior: scrollType, top: 0 };
+
     function getLeftSide() {
         if (paginationData.activePage < totalPaginationLinksForSide) {
             return paginationData.activePage;
@@ -27,6 +30,8 @@ function Paginator({
     const leftSide = getLeftSide();
 
     function getRightSide(leftSide: number) {
+        if (totalPages === 0) return 0;
+
         const totalPageSteps =
             totalPaginationLinksForSide +
             (totalPaginationLinksForSide - leftSide);
@@ -40,12 +45,20 @@ function Paginator({
         return totalPageSteps;
     }
     const rightSide = getRightSide(leftSide);
+
     // const RightToLeft = leftSide + (totalPaginationLinksForSide - rightSide);
     // const addedRightToLeftSide = RightToLeft > -1 ? RightToLeft : 0;
-    const addedRightToLeftSide =
-        leftSide >= totalPaginationLinksForSide
-            ? leftSide + (totalPaginationLinksForSide - rightSide)
-            : leftSide;
+
+    function getAddedValues(rightSide: number, leftSide: number) {
+        if (leftSide >= totalPaginationLinksForSide) {
+            const result = leftSide + (totalPaginationLinksForSide - rightSide);
+            if (result > totalPages - paginationData.activePage)
+                return paginationData.activePage;
+            return result;
+        }
+        return leftSide;
+    }
+    const addedRightToLeftSide = getAddedValues(rightSide, leftSide);
 
     return (
         <div className="w-full flex gap-3 items-center justify-center mb-7">
@@ -60,6 +73,8 @@ function Paginator({
                                     ? paginationData.activePage - 1
                                     : 0,
                         });
+
+                        window.scrollTo(scrollOptions);
                     }}
                 >
                     <LeftSvg className="w-6 h-6" />
@@ -78,6 +93,8 @@ function Paginator({
                                         addedRightToLeftSide +
                                         key,
                                 });
+
+                                window.scrollTo(scrollOptions);
                             }}
                         >
                             {paginationData.activePage -
@@ -101,6 +118,8 @@ function Paginator({
                                 ...paginationData,
                                 activePage: key + paginationData.activePage + 1,
                             });
+
+                            window.scrollTo(scrollOptions);
                         }}
                     >
                         {key + paginationData.activePage + 2}
@@ -118,6 +137,8 @@ function Paginator({
                                     ? paginationData.activePage
                                     : paginationData.activePage + 1,
                         });
+
+                        window.scrollTo(scrollOptions);
                     }}
                 >
                     <RightSvg className="w-6 h-6" />

@@ -5,18 +5,15 @@ import { GithubApi } from "../../../utils/api/GithubAPI";
 import GitIcon from "../../../assets/icons/Git.svg";
 import GlobeIcon from "../../../assets/icons/Globe.svg";
 import StackIcon from "../../../assets/icons/Stack.svg";
-import CodeIcon from "../../../assets/icons/Code.svg";
 import RulersIcon from "../../../assets/icons/Rulers.svg";
+import ForkIcon from "../../../assets/icons/CodeFork.svg";
 import { useProjectsContext } from "../../General/Contexts/ProjectsProvider";
 import { useNavigate } from "react-router-dom";
 import {
     FRAMEWORKS_ENUM,
     FrameworksNames,
 } from "../../../enums/FrameworksEnum";
-import {
-    PROGRAMMING_LANGUAGES_ENUM,
-    ProgrammingLanguagesNames,
-} from "../../../enums/LanguagesEnum";
+import { PROGRAMMING_LANGUAGES_ENUM } from "../../../enums/LanguagesEnum";
 import MiniTag from "../../General/MiniTag";
 import { useCallback, useEffect, useState } from "react";
 import { GithubRepositoryInterface } from "../../../interfaces/Github/GithubRepositoryInterface";
@@ -25,6 +22,7 @@ import ProjectsFilter from "./ProjectsFilter";
 import { ProjectsFilterDataInterface } from "../../../interfaces/ProjectsFilterDataInterface";
 import Paginator from "../../General/Paginator";
 import { PaginationDataInterface } from "../../../interfaces/Pagination/PaginationDataInterface";
+import ProjectLanguages from "./Card/ProjectLanguages";
 
 function makeHighlight(text: string, searchString: string) {
     const regex = new RegExp(`(${searchString})`, "gi");
@@ -90,7 +88,7 @@ function ProjectsBody() {
             activePage: 0,
         });
 
-    const reposPerPage = 10;
+    const reposPerPage = 12;
     const totalPaginationLinksForSide = 2;
     const totalPages = Math.ceil(shownRepositories.length / reposPerPage);
 
@@ -134,16 +132,21 @@ function ProjectsBody() {
         setFilterData(data);
     }
 
+    useEffect(() => {
+        setPaginationData({ ...paginationData, activePage: 0 });
+    }, [filterData]);
+
     const navigate = useNavigate();
     const placeholderImg = "https://placehold.co/250x250";
 
-    // useEffect(() => {
-    //     setCurrentPages(totalPages);
-    // }, [totalPages]);
-
     useEffect(() => {
-        const sortedRepositories = sortDESCByCreatedAt(repositories).filter(
-            (repository) => {
+        if (!repositories) {
+            setShownRepositories([]);
+            return;
+        }
+
+        const sortedRepositories = sortDESCByCreatedAt(
+            repositories.filter((repository) => {
                 if (filterData.search !== "") {
                     if (
                         !repository.name
@@ -166,10 +169,6 @@ function ProjectsBody() {
                     return true;
                 }
 
-                if (!repository.data) {
-                    return false;
-                }
-
                 if (
                     !filterData.stack.every((framework) =>
                         repository.data?.stack.includes(framework)
@@ -179,21 +178,29 @@ function ProjectsBody() {
                 }
 
                 if (
-                    !filterData.languages.every((language) =>
-                        repository.data?.languages.includes(language)
-                    )
+                    !filterData.languages.every((language) => {
+                        if (repository.data?.languages)
+                            return repository.data.languages.includes(language);
+
+                        if (repository.fetchData?.languages?.enums)
+                            return repository.fetchData.languages.enums.includes(
+                                language
+                            );
+
+                        return false;
+                    })
                 ) {
                     return false;
                 }
 
                 if (
                     filterData.size > -1 &&
-                    filterData.size !== repository.data.size
+                    filterData.size !== repository.data?.size
                 )
                     return false;
 
                 return true;
-            }
+            })
         );
 
         setShownRepositories(sortedRepositories);
@@ -201,7 +208,7 @@ function ProjectsBody() {
     const fromRepos = paginationData.activePage * reposPerPage;
 
     return (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 mb-auto">
             <ProjectsFilter
                 projects={shownRepositories}
                 filterData={filterData}
@@ -217,7 +224,8 @@ function ProjectsBody() {
                         .slice(
                             fromRepos,
                             fromRepos + reposPerPage > shownRepositories.length
-                                ? shownRepositories.length - fromRepos
+                                ? fromRepos +
+                                      (shownRepositories.length - fromRepos)
                                 : fromRepos + reposPerPage
                         )
                         .map((project, key) => {
@@ -290,7 +298,19 @@ function ProjectsBody() {
                                             filterData.search
                                         )}
                                     </div>
-                                    {project.data && (
+                                    {project.fork && (
+                                        <div className="flex gap-3 justify-between">
+                                            <div>
+                                                <ForkIcon className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <MiniTag
+                                                    name={"Forked Project"}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                    {(project.data && (
                                         <>
                                             <div className="flex gap-3 justify-between">
                                                 <div>
@@ -335,42 +355,17 @@ function ProjectsBody() {
                                                     )}
                                                 </div>
                                             </div>
-                                            <div className="flex gap-3 justify-between">
-                                                <div>
-                                                    <CodeIcon className="w-6 h-6" />
-                                                </div>
-                                                <div className="flex gap-1 justify-end flex-wrap">
-                                                    {(project.data.languages &&
-                                                        project.data.languages
-                                                            .length > 0 &&
-                                                        project.data.languages.map(
-                                                            (language, key) => {
-                                                                return (
-                                                                    <MiniTag
-                                                                        key={
-                                                                            key
-                                                                        }
-                                                                        name={
-                                                                            ProgrammingLanguagesNames[
-                                                                                language
-                                                                            ]
-                                                                        }
-                                                                        onClick={() => {
-                                                                            addLanguage(
-                                                                                language
-                                                                            );
-                                                                        }}
-                                                                        isActive={filterData.languages.includes(
-                                                                            language
-                                                                        )}
-                                                                    />
-                                                                );
-                                                            }
-                                                        )) || (
-                                                        <MiniTag name="None" />
-                                                    )}
-                                                </div>
-                                            </div>
+
+                                            <ProjectLanguages
+                                                showLanguages={
+                                                    project.data.languages
+                                                }
+                                                filterLanguages={
+                                                    filterData.languages
+                                                }
+                                                onLanguageClick={addLanguage}
+                                            />
+
                                             <div className="flex gap-3 justify-between">
                                                 <div>
                                                     <RulersIcon className="w-6 h-6" />
@@ -413,7 +408,26 @@ function ProjectsBody() {
                                                 </div>
                                             </div>
                                         </>
-                                    )}
+                                    )) ||
+                                        (project.fetchData && (
+                                            <>
+                                                {project.fetchData
+                                                    .languages && (
+                                                    <ProjectLanguages
+                                                        showLanguages={
+                                                            project.fetchData
+                                                                .languages.enums
+                                                        }
+                                                        filterLanguages={
+                                                            filterData.languages
+                                                        }
+                                                        onLanguageClick={
+                                                            addLanguage
+                                                        }
+                                                    />
+                                                )}
+                                            </>
+                                        ))}
                                     {project.created_at && (
                                         <DataSpliter
                                             keyText={t(

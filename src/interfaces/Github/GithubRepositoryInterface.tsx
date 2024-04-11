@@ -1,3 +1,5 @@
+import { PROGRAMMING_LANGUAGES_ENUM } from "../../enums/LanguagesEnum";
+
 interface RepostiroyLicenseInterface {
     key: string;
     name: string;
@@ -29,6 +31,12 @@ interface RepositoryOwnerInterface {
 
 export interface GithubRepositoryInterface {
     data?: object;
+    fetchData?: {
+        languages?: {
+            statistics: object;
+            enums: PROGRAMMING_LANGUAGES_ENUM[];
+        };
+    };
     id: number;
     node_id: string;
     name: string;

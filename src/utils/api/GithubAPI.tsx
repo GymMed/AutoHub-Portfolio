@@ -36,6 +36,10 @@ class GithubApi {
     static getGitCommits(projectName: string): string {
         return `${GithubApi.getRepository(projectName)}/git/commits`;
     }
+
+    static getRepositoryLanguages(projectName: string): string {
+        return `${GithubApi.getRepository(projectName)}/languages`;
+    }
 }
 
 export { GithubApi };

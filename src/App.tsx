@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         element: <ProjectView />,
     },
     {
+        path: AVAILABLE_ROUTES[ROUTES_ENUM.ContactMe].path,
+        element: <ProjectView />,
+    },
+    {
         path: "*",
         element: <NotFound />,
     },

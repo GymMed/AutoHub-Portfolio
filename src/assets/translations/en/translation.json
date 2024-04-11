@@ -2,10 +2,19 @@
     "nav": {
         "Home": "Home",
         "Projects": "Projects",
+        "Contact": "Contact Me",
         "Register": "Register",
         "Login": "Login"
     },
     "pages": {
+        "home": {
+            "slides": {
+                "website": {
+                    "Dreams": "Follow Your Dreams",
+                    "Develop": "Develop representation site for your business"
+                }
+            }
+        },
         "projects": {
             "filter": {
                 "projectsAvailable": "Filtered projects available for public:",
@@ -22,6 +31,7 @@
             "images": "Images:",
             "gifs": "Gifs:"
         },
+        "contactMe": {},
         "404": {
             "pageNotFound": "Page Not Found",
             "pageYouLookingFor": "Sorry, the page you are looking for might be unavailable or does not exist.",

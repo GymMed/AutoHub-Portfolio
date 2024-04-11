@@ -249,6 +249,18 @@ export async function getProjects() {
             ],
         },
         {
+            id: 732843973,
+            size: PROJECT_SIZES_ENUM.Small,
+            status: PROJECT_STATUSES_ENUM.Unfinised,
+            images: [],
+            stack: [FRAMEWORKS_ENUM.Alpinejs, FRAMEWORKS_ENUM.Tailwind],
+            languages: [
+                PROGRAMMING_LANGUAGES_ENUM.html,
+                PROGRAMMING_LANGUAGES_ENUM.css,
+                PROGRAMMING_LANGUAGES_ENUM.javascript,
+            ],
+        },
+        {
             id: 733879386,
             size: PROJECT_SIZES_ENUM.VerySmall,
             status: PROJECT_STATUSES_ENUM.Finished,
@@ -587,7 +599,6 @@ export async function getProjects() {
             gifs: await ImageImporter.importImages(
                 import.meta.glob(`../assets/gifs/BIT-Invoice-Generator/*.gif`)
             ),
-
             images: await ImageImporter.importImages(
                 import.meta.glob(
                     `../assets/images/BIT-Invoice-Generator/*.{jpg,jpeg,png,svg}`
@@ -617,6 +628,23 @@ export async function getProjects() {
             ],
         },
         {
+            id: 700367680,
+            size: PROJECT_SIZES_ENUM.Small,
+            status: PROJECT_STATUSES_ENUM.Finished,
+            gifs: await ImageImporter.importImages(
+                import.meta.glob(
+                    `../assets/gifs/Threading-Test-NetFramework/*.gif`
+                )
+            ),
+            images: await ImageImporter.importImages(
+                import.meta.glob(
+                    `../assets/images/Threading-Test-NetFramework/*.{jpg,jpeg,png,svg}`
+                )
+            ),
+            stack: [FRAMEWORKS_ENUM.NetWinForms],
+            languages: [PROGRAMMING_LANGUAGES_ENUM.Csharp],
+        },
+        {
             id: 691325877,
             size: PROJECT_SIZES_ENUM.Small,
             status: PROJECT_STATUSES_ENUM.Finished,
@@ -627,6 +655,18 @@ export async function getProjects() {
             ),
             stack: [],
             languages: [PROGRAMMING_LANGUAGES_ENUM.lua],
+        },
+        {
+            id: 624689877,
+            size: PROJECT_SIZES_ENUM.Small,
+            status: PROJECT_STATUSES_ENUM.Finished,
+            images: await ImageImporter.importImages(
+                import.meta.glob(
+                    `../assets/images/DigitalSignerConsole/*.{jpg,jpeg,png,svg}`
+                )
+            ),
+            stack: [],
+            languages: [PROGRAMMING_LANGUAGES_ENUM.Csharp],
         },
         {
             id: 623283184,
@@ -688,6 +728,42 @@ export async function getProjects() {
                 PROGRAMMING_LANGUAGES_ENUM.javascript,
                 PROGRAMMING_LANGUAGES_ENUM.html,
                 PROGRAMMING_LANGUAGES_ENUM.css,
+            ],
+        },
+        {
+            id: 527764964,
+            size: PROJECT_SIZES_ENUM.Medium,
+            status: PROJECT_STATUSES_ENUM.Unfinised,
+            gifs: await ImageImporter.importImages(
+                import.meta.glob(`../assets/gifs/OutwardSaveFixer/*.gif`)
+            ),
+            images: await ImageImporter.importImages(
+                import.meta.glob(
+                    `../assets/images/OutwardSaveFixer/*.{jpg,jpeg,png,svg}`
+                )
+            ),
+            stack: [FRAMEWORKS_ENUM.NetWinForms],
+            languages: [
+                PROGRAMMING_LANGUAGES_ENUM.Csharp,
+                PROGRAMMING_LANGUAGES_ENUM.xml,
+            ],
+        },
+        {
+            id: 519884012,
+            size: PROJECT_SIZES_ENUM.Small,
+            status: PROJECT_STATUSES_ENUM.Finished,
+            gifs: await ImageImporter.importImages(
+                import.meta.glob(`../assets/gifs/OutwardSaveTransfer/*.gif`)
+            ),
+            images: await ImageImporter.importImages(
+                import.meta.glob(
+                    `../assets/images/OutwardSaveTransfer/*.{jpg,jpeg,png,svg}`
+                )
+            ),
+            stack: [FRAMEWORKS_ENUM.NetWinForms],
+            languages: [
+                PROGRAMMING_LANGUAGES_ENUM.Csharp,
+                PROGRAMMING_LANGUAGES_ENUM.xml,
             ],
         },
     ];

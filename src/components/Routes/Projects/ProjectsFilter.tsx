@@ -47,7 +47,10 @@ function ProjectsFilter({
     sizeOptions.unshift({ value: "-1", label: t("projectsSizesEnum.All") });
 
     return (
-        <div className="flex flex-col items-center gap-3 p-4 mx-5 mt-5 rounded bg-white dark:bg-dark-eval-1 text-light-500 dark:text-light-400">
+        <div
+            id="project-filter"
+            className="flex flex-col items-center gap-3 p-4 mx-5 mt-5 rounded bg-white dark:bg-dark-eval-1 text-light-500 dark:text-light-400"
+        >
             <div className="w-full flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                     <div className="font-semibold">

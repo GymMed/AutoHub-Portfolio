@@ -120,7 +120,7 @@ function SelectItem({ options, onClickValue }: SelectItemInterface) {
                     selectItemData.shownOptions.length > 0
                         ? ""
                         : "hidden ") +
-                    "mt-2 absolute py-2 bg-white dark:bg-dark-eval-0 rounded z-10 min-w-20 w-full max-h-72 overflow-y-auto"
+                    "mt-2 absolute py-2 bg-light-200 dark:bg-dark-eval-0 rounded z-10 min-w-20 w-full max-h-72 overflow-y-auto"
                 }
             >
                 {selectItemData.shownOptions.map((option, key) => {
@@ -131,7 +131,7 @@ function SelectItem({ options, onClickValue }: SelectItemInterface) {
                                 (key === 0 ? "border-t " : "") +
                                 (key === selectItemData.selected
                                     ? "border-white border-t bg-primary-500 dark:bg-primary-500 hover:bg-primary-700 hover:dark:bg-primary-700 text-white "
-                                    : "border-light-200 dark:border-light-400 hover:dark:bg-dark-eval-1 hover:bg-light-200 ") +
+                                    : "border-white dark:border-light-400 hover:dark:bg-dark-eval-1 hover:bg-light-300 ") +
                                 "p-2 border-b"
                             }
                             onClick={() => {

@@ -2,10 +2,19 @@
     "nav": {
         "Home": "Namai",
         "Projects": "Projektai",
+        "Contact": "Contact Me",
         "Register": "Registracija",
         "Login": "Prisijungimas"
     },
     "pages": {
+        "home": {
+            "slides": {
+                "website": {
+                    "Dreams": "Siek Savo Svajonių",
+                    "Develop": "Įkurkime svetaine jūsų verslui"
+                }
+            }
+        },
         "projects": {
             "filter": {
                 "projectsAvailable": "Išfiltruoti paviešinti produktai:",
@@ -22,6 +31,7 @@
             "images": "Nuotraukos:",
             "gifs": "Gifs:"
         },
+        "contactMe": {},
         "404": {
             "pageNotFound": "Puslapis nerastas!",
             "pageYouLookingFor": "Atsiprašome, puslapis, kurio ieškote, gali būti nepasiekiamas arba jo nėra. ",

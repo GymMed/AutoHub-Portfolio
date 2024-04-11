@@ -32,9 +32,10 @@ function FullSelectItem({
             </div>
             {selectEnumData.length > 0 && (
                 <div className=" text-white flex gap-1">
-                    {selectEnumData.map((data) => {
+                    {selectEnumData.map((data, key) => {
                         return (
                             <MiniTag
+                                key={key}
                                 name={data.name}
                                 icon={data.icon ? data.icon : ""}
                                 onClick={data.onClick}
