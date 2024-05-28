@@ -2,6 +2,7 @@ import { ChangeEvent, ReactElement } from "react";
 import { SelectOptionInterface } from "../../interfaces/SelectOptionInterface";
 
 interface SelectInterface {
+    value?: string;
     name: string;
     id: string;
     onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
@@ -16,7 +17,14 @@ function getClassesBasedOnIcon(hasIcon: boolean): string {
     return "";
 }
 
-function Select({ name, id, options, onChange, icon = null }: SelectInterface) {
+function Select({
+    name,
+    id,
+    options,
+    onChange,
+    icon = null,
+    value = "",
+}: SelectInterface) {
     const hasIcon: boolean = icon ? true : false;
 
     return (
@@ -30,6 +38,7 @@ function Select({ name, id, options, onChange, icon = null }: SelectInterface) {
             onChange={(event) => {
                 onChange(event);
             }}
+            value={value}
         >
             {options.map((option, key) => {
                 return (

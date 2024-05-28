@@ -38,3 +38,10 @@ export const AVAILABLE_SELECT_LANGUAGES: SelectOptionInterface[] = [
     { value: "en", text: "EN" },
     { value: "lt", text: "LT" },
 ];
+
+export const SOCIALS_LINKS: string[] = [
+    "https://github.com/GymMed",
+    "https://www.linkedin.com/in/gytis-m/",
+];
+
+export const PHONE_NUMBER = "8620-test-76";

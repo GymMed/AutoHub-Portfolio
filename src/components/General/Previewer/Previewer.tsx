@@ -38,7 +38,7 @@ function Previewer({ views }: PreviewerInterface) {
                                 <div className="text-light-500 dark:text-light-400 font-semibold">
                                     {view.title}
                                 </div>
-                                <div className="p-2 shadow-inner rounded bg-light-200 dark:bg-dark-eval-0 flex gap-2">
+                                <div className="p-2 shadow-inner rounded bg-light-200 dark:bg-dark-eval-0 gap-2 grid grid-cols-5">
                                     {view.viewsPath.map((path, index) => {
                                         return (
                                             <div
@@ -75,7 +75,7 @@ function Previewer({ views }: PreviewerInterface) {
                                                                 : "") +
                                                             "Item View"
                                                         }
-                                                        className="w-32 h-32 rounded object-contain"
+                                                        className="rounded object-contain"
                                                     />
                                                 </div>
                                             </div>

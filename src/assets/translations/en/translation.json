@@ -11,8 +11,23 @@
             "slides": {
                 "website": {
                     "Dreams": "Follow Your Dreams",
-                    "Develop": "Develop representation site for your business"
+                    "Develop": "Develop representation site for your business",
+                    "Button": "Contact Me"
+                },
+                "person": {
+                    "Title": "Software Engineer",
+                    "Text": "I take pride in writing clean, efficient code to deliver exceptional results. If you're looking for a dedicated software engineer to bring your projects to life, let's connect and discuss how I can contribute to your success.",
+                    "Button": "Contact"
                 }
+            },
+            "owner": {
+                "title": "Software Engineer",
+                "paragraph": "I'm Gytis, a skilled software engineer from Lithuania with a prestigious bachelor's degree in software engineering. With hands-on experience in full-stack web development using Laravel, PHP, and WordPress. I offer expertise in C++, C#, PHP, JavaScript, CSS, HTML, Java, and SQL.",
+                "paragraph2": "I take pride in writing clean, efficient code to deliver exceptional results. If you're looking for a dedicated software engineer to bring your projects to life, let's connect and discuss how I can contribute to your success."
+            },
+            "projects": {
+                "header": "Projects",
+                "loadMore": "Load more . . ."
             }
         },
         "projects": {
@@ -23,6 +38,7 @@
                 "languages": "Languages:",
                 "size": "Size:"
             },
+            "loading": "Loading . . . ",
             "createdAt": "Created At:",
             "updatedAt": "Updated At:",
             "pushedAt": "Pushed At:"
@@ -31,7 +47,22 @@
             "images": "Images:",
             "gifs": "Gifs:"
         },
-        "contactMe": {},
+        "contactMe": {
+            "sections": {
+                "MailOwner": {
+                    "header": "Mail Owner",
+                    "fullName": "Full Name:",
+                    "email": "Email Address:",
+                    "subject": "Subject:",
+                    "message": "Message:",
+                    "submit": "Submit",
+                    "success": "We will review letter and contact back briefly!"
+                },
+                "SocialsOwner": {
+                    "header": "Contact Through Socials:"
+                }
+            }
+        },
         "404": {
             "pageNotFound": "Page Not Found",
             "pageYouLookingFor": "Sorry, the page you are looking for might be unavailable or does not exist.",
@@ -44,6 +75,12 @@
     "footer": {
         "findMe": "Find Me:",
         "service": "2024 professional software development services"
+    },
+    "components": {
+        "Loader": {
+            "loading": "Loading . . . ",
+            "error": "We Encountered An Temporary Error!"
+        }
     },
 
     "projectsStackEnum": {

@@ -2,6 +2,8 @@ import PaginationButton from "./PaginationButton";
 import LeftSvg from "../../assets/icons/Left.svg";
 import RightSvg from "../../assets/icons/Right.svg";
 import { PaginationDataInterface } from "../../interfaces/Pagination/PaginationDataInterface";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 interface PaginatorInterface {
     paginationData: PaginationDataInterface;
@@ -16,6 +18,19 @@ function Paginator({
     totalPaginationLinksForSide,
     totalPages,
 }: PaginatorInterface) {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        if (paginationData.activePage === 0) {
+            searchParams.delete("page");
+            setSearchParams(searchParams);
+            return;
+        }
+
+        searchParams.set("page", (paginationData.activePage + 1).toString());
+        setSearchParams(searchParams);
+    }, [paginationData]);
+
     const scrollType: ScrollBehavior = "smooth";
     const scrollOptions = { behavior: scrollType, top: 0 };
 
@@ -109,23 +124,25 @@ function Paginator({
                     ? paginationData?.activePage + 1
                     : 1}
             </PaginationButton>
-            {[...Array(rightSide)].map((value, key) => {
-                return (
-                    <PaginationButton
-                        key={key}
-                        onClick={() => {
-                            setPaginationData({
-                                ...paginationData,
-                                activePage: key + paginationData.activePage + 1,
-                            });
+            {rightSide > -1 &&
+                [...Array(rightSide)].map((value, key) => {
+                    return (
+                        <PaginationButton
+                            key={key}
+                            onClick={() => {
+                                setPaginationData({
+                                    ...paginationData,
+                                    activePage:
+                                        key + paginationData.activePage + 1,
+                                });
 
-                            window.scrollTo(scrollOptions);
-                        }}
-                    >
-                        {key + paginationData.activePage + 2}
-                    </PaginationButton>
-                );
-            })}
+                                window.scrollTo(scrollOptions);
+                            }}
+                        >
+                            {key + paginationData.activePage + 2}
+                        </PaginationButton>
+                    );
+                })}
             {rightSide > 0 && (
                 <PaginationButton
                     isRounded={true}

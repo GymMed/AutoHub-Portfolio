@@ -63,13 +63,7 @@ class FetchCacher {
             const data = jsons[currentPromise];
 
             if (!allPromises[currentPromise].ok) {
-                if (
-                    !(
-                        !Array.isArray(data) &&
-                        data.message &&
-                        data.message === "Not Found"
-                    )
-                ) {
+                if (!(!Array.isArray(data) && data.message)) {
                     continue;
                 }
 
@@ -107,13 +101,7 @@ class FetchCacher {
         const data = await promise.json();
 
         if (!promise.ok) {
-            if (
-                !(
-                    !Array.isArray(data) &&
-                    data.message &&
-                    data.message === "Not Found"
-                )
-            ) {
+            if (!(!Array.isArray(data) && data.message)) {
                 return [];
             }
 

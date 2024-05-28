@@ -20,6 +20,7 @@ function LanguageSelect() {
                 onChange={(event) => {
                     onChangeLanguage(event, i18n);
                 }}
+                value={i18n.language}
                 icon={null}
             />
         </div>

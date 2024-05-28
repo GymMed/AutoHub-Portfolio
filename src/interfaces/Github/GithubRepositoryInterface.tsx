@@ -1,4 +1,4 @@
-import { PROGRAMMING_LANGUAGES_ENUM } from "../../enums/LanguagesEnum";
+import { GithubRepositoryFetchDataInterface } from "./GithubRepositoryFetchDataInterface";
 
 interface RepostiroyLicenseInterface {
     key: string;
@@ -31,12 +31,7 @@ interface RepositoryOwnerInterface {
 
 export interface GithubRepositoryInterface {
     data?: object;
-    fetchData?: {
-        languages?: {
-            statistics: object;
-            enums: PROGRAMMING_LANGUAGES_ENUM[];
-        };
-    };
+    fetchData?: GithubRepositoryFetchDataInterface;
     id: number;
     node_id: string;
     name: string;
@@ -116,4 +111,6 @@ export interface GithubRepositoryInterface {
     open_issues: number;
     watchers: number;
     default_branch: string;
+    message?: string;
+    documentation_url?: string;
 }

@@ -29,6 +29,20 @@ class GithubApi {
         return `${GithubApi.getRepositoryBase()}/${projectName}`;
     }
 
+    //custom api calls for contents
+    static getPreview(projectName: string): string {
+        return `${GithubApi.getRepository(projectName)}/contents/preview`;
+    }
+
+    static getImages(projectName: string): string {
+        return `${GithubApi.getPreview(projectName)}/images`;
+    }
+
+    static getGifs(projectName: string): string {
+        return `${GithubApi.getPreview(projectName)}/gifs`;
+    }
+    /////
+
     static getCommits(projectName: string): string {
         return `${GithubApi.getRepository(projectName)}/commits`;
     }

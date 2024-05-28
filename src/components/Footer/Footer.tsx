@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { APP_NAME } from "../../utils/constants";
+import { APP_NAME, SOCIALS_LINKS } from "../../utils/constants";
 import SocialSection from "./Sections/SocialSection";
 import SocialSectionLink from "./Sections/SocialSectionLink";
 import FacebookSvg from "../../assets/icons/Social/Facebook.svg";
 import LinkedinSvg from "../../assets/icons/Social/Linkedin.svg";
 import GithubSvg from "../../assets/icons/Social/Github.svg";
+import { SOCIALS_ENUM } from "../../enums/SocialsEnum";
 
 function Footer() {
     const { t } = useTranslation();
@@ -17,13 +18,19 @@ function Footer() {
                 </div>
                 <div className="flex flex-wrap gap-10">
                     <SocialSection headerText={t("footer.findMe")}>
-                        <SocialSectionLink url="https://github.com/GymMed">
+                        <SocialSectionLink
+                            url={SOCIALS_LINKS[SOCIALS_ENUM.GitHub]}
+                        >
                             <GithubSvg />
                         </SocialSectionLink>
-                        <SocialSectionLink url="https://www.linkedin.com/in/gytis-m/">
+                        <SocialSectionLink
+                            url={SOCIALS_LINKS[SOCIALS_ENUM.Linkedin]}
+                        >
                             <LinkedinSvg />
                         </SocialSectionLink>
-                        <SocialSectionLink>
+                        <SocialSectionLink
+                            url={SOCIALS_LINKS[SOCIALS_ENUM.Facebook]}
+                        >
                             <FacebookSvg />
                         </SocialSectionLink>
                     </SocialSection>

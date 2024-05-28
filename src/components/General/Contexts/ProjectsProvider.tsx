@@ -1,21 +1,16 @@
 import React, {
     ReactNode,
     createContext,
-    useCallback,
     useContext,
     useEffect,
     useState,
 } from "react";
 import { FetchCacher } from "../../../utils/api/FetchCacher";
 import { GithubApi } from "../../../utils/api/GithubAPI";
-import { getProjects } from "../../../utils/additionalProjectsData.tsx";
 import { GithubRepositoryInterface } from "../../../interfaces/Github/GithubRepositoryInterface.tsx";
 import { useOwnerContext } from "./OwnerProvider.tsx";
-import {
-    PROGRAMMING_LANGUAGES_ENUM,
-    ProgrammingLanguagesNames,
-} from "../../../enums/LanguagesEnum.tsx";
 import { PROJECTS_PROVIDER_STATES_ENUM } from "../../../enums/ProjectsProviderStatesEnum.tsx";
+import RepositoriesProcessor from "../../../utils/RepositoriesProcessor.ts";
 
 interface projectsProviderInterface {
     children: ReactNode;
@@ -78,46 +73,6 @@ function ProjectsProvider({ children }: projectsProviderInterface) {
     //     setRepositories(repos);
     // }
 
-    const getLanguagesForProjects = useCallback(
-        async (repos: GithubRepositoryInterface[]) => {
-            for (const repo of repos) {
-                if (!repo.fetchData) {
-                    repo.fetchData = {};
-
-                    if (!repo.fetchData.languages)
-                        repo.fetchData.languages = {
-                            statistics: {},
-                            enums: [],
-                        };
-
-                    repo.fetchData.languages.statistics =
-                        await FetchCacher.fetch(
-                            GithubApi.getRepositoryLanguages(repo.name)
-                        );
-
-                    for (const language of Object.keys(
-                        repo.fetchData.languages.statistics
-                    )) {
-                        for (const enumKey in ProgrammingLanguagesNames) {
-                            if (
-                                language.toLowerCase() ===
-                                ProgrammingLanguagesNames[enumKey].toLowerCase()
-                            ) {
-                                repo.fetchData.languages.enums.push(
-                                    Number(
-                                        enumKey
-                                    ) as PROGRAMMING_LANGUAGES_ENUM
-                                );
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        [repositories]
-    );
-
     async function getAllGitHubRepositories() {
         if (!owner) return [];
 
@@ -149,31 +104,7 @@ function ProjectsProvider({ children }: projectsProviderInterface) {
             }
         }
 
-        if (!Array.isArray(repos)) return;
-
-        const projects = await getProjects();
-        let foundMatch = false;
-        const noMatchesRepos = [];
-
-        for (const repository of repos) {
-            foundMatch = false;
-
-            for (const project of projects) {
-                if (project.id === repository.id) {
-                    repository.data = project;
-                    foundMatch = true;
-                    break;
-                }
-            }
-
-            if (foundMatch) {
-                foundMatch = false;
-            } else {
-                noMatchesRepos.push(repository);
-            }
-        }
-
-        await getLanguagesForProjects(noMatchesRepos);
+        await RepositoriesProcessor.process(repos);
 
         console.log(repos, "repos");
         setRepositories(repos);
@@ -188,7 +119,7 @@ function ProjectsProvider({ children }: projectsProviderInterface) {
         // getGitHubRepositories();
         setState(PROJECTS_PROVIDER_STATES_ENUM.Loading);
         getAllGitHubRepositories();
-    }, []);
+    }, [owner]);
 
     return (
         <ProjectsContext.Provider

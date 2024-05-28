@@ -25,6 +25,9 @@ export default {
                     "eval-2": "#2A2F42",
                     "eval-3": "#2C3142",
                 },
+                sections: {
+                    profile: "#0d2635",
+                },
                 accent: {
                     50: "#fefce8",
                     100: "#fef9c3",

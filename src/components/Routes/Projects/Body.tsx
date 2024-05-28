@@ -4,25 +4,31 @@ import { useTranslation } from "react-i18next";
 import { GithubApi } from "../../../utils/api/GithubAPI";
 import GitIcon from "../../../assets/icons/Git.svg";
 import GlobeIcon from "../../../assets/icons/Globe.svg";
-import StackIcon from "../../../assets/icons/Stack.svg";
-import RulersIcon from "../../../assets/icons/Rulers.svg";
 import ForkIcon from "../../../assets/icons/CodeFork.svg";
 import { useProjectsContext } from "../../General/Contexts/ProjectsProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
     FRAMEWORKS_ENUM,
     FrameworksNames,
 } from "../../../enums/FrameworksEnum";
-import { PROGRAMMING_LANGUAGES_ENUM } from "../../../enums/LanguagesEnum";
+import {
+    PROGRAMMING_LANGUAGES_ENUM,
+    ProgrammingLanguagesNames,
+} from "../../../enums/LanguagesEnum";
 import MiniTag from "../../General/MiniTag";
 import { useCallback, useEffect, useState } from "react";
 import { GithubRepositoryInterface } from "../../../interfaces/Github/GithubRepositoryInterface";
-import { ProjectSizesNames } from "../../../enums/ProjectSizesEnum";
 import ProjectsFilter from "./ProjectsFilter";
 import { ProjectsFilterDataInterface } from "../../../interfaces/ProjectsFilterDataInterface";
 import Paginator from "../../General/Paginator";
 import { PaginationDataInterface } from "../../../interfaces/Pagination/PaginationDataInterface";
 import ProjectLanguages from "./Card/ProjectLanguages";
+import { PROJECTS_PROVIDER_STATES_ENUM } from "../../../enums/ProjectsProviderStatesEnum";
+import Loader from "../../General/Loader";
+import ProjectStack from "./Card/ProjectStack";
+import ProjectSize from "./Card/ProjectSize";
+import { ProjectSizesNames } from "../../../enums/ProjectSizesEnum";
+import FilterParamsHelper from "../../../utils/FilterParamsHelper";
 
 function makeHighlight(text: string, searchString: string) {
     const regex = new RegExp(`(${searchString})`, "gi");
@@ -52,7 +58,9 @@ function getSearchString(text: string, searchString: string) {
 
 function ProjectsBody() {
     const { t } = useTranslation();
-    const { repositories } = useProjectsContext();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const { repositories, state } = useProjectsContext();
 
     // const sortDESCByCreatedAt = useMemo(() => {
     //     if (!repositories) return [];
@@ -77,10 +85,10 @@ function ProjectsBody() {
 
     const [filterData, setFilterData] = useState<ProjectsFilterDataInterface>({
         show: false,
-        search: "",
-        stack: [],
-        languages: [],
-        size: -1,
+        search: FilterParamsHelper.getSearchFromQuery(searchParams),
+        stack: FilterParamsHelper.getStackFromQuery(searchParams),
+        languages: FilterParamsHelper.getLanguagesFromQuery(searchParams),
+        size: FilterParamsHelper.getSizeFromQuery(searchParams),
     });
 
     const [paginationData, setPaginationData] =
@@ -104,12 +112,23 @@ function ProjectsBody() {
             if (frameworkEnum === filterData.stack[currentFramework]) {
                 data.stack.splice(currentFramework, 1);
                 setFilterData(data);
+                searchParams.delete(
+                    "stack",
+                    FrameworksNames[frameworkEnum].toLowerCase()
+                );
+                setSearchParams(searchParams);
                 return;
             }
         }
 
         data.stack.push(frameworkEnum);
         setFilterData(data);
+        searchParams.append(
+            "stack",
+            FrameworksNames[frameworkEnum].toLowerCase()
+        );
+        searchParams.delete("page");
+        setSearchParams(searchParams);
     }
 
     function addLanguage(languageEnum: PROGRAMMING_LANGUAGES_ENUM) {
@@ -124,12 +143,35 @@ function ProjectsBody() {
             if (languageEnum === filterData.languages[currentLanguage]) {
                 data.languages.splice(currentLanguage, 1);
                 setFilterData(data);
+                searchParams.delete(
+                    "languages",
+                    ProgrammingLanguagesNames[languageEnum].toLowerCase()
+                );
+
+                setSearchParams(searchParams);
                 return;
             }
         }
 
         data.languages.push(languageEnum);
+
         setFilterData(data);
+        searchParams.append(
+            "languages",
+            ProgrammingLanguagesNames[languageEnum].toLowerCase()
+        );
+        searchParams.delete("page");
+        setSearchParams(searchParams);
+    }
+
+    function setSizeSearchParams(newSize: number) {
+        if (newSize < 0) {
+            searchParams.delete("size");
+        } else {
+            searchParams.set("size", ProjectSizesNames[newSize].toLowerCase());
+        }
+        searchParams.delete("page");
+        setSearchParams(searchParams);
     }
 
     useEffect(() => {
@@ -170,9 +212,15 @@ function ProjectsBody() {
                 }
 
                 if (
-                    !filterData.stack.every((framework) =>
-                        repository.data?.stack.includes(framework)
-                    )
+                    !filterData.stack.every((framework) => {
+                        if (repository.data?.stack)
+                            return repository.data?.stack.includes(framework);
+
+                        if (repository.fetchData?.stack?.enums)
+                            return repository.fetchData.stack.enums.includes(
+                                framework
+                            );
+                    })
                 ) {
                     return false;
                 }
@@ -193,17 +241,31 @@ function ProjectsBody() {
                     return false;
                 }
 
-                if (
-                    filterData.size > -1 &&
-                    filterData.size !== repository.data?.size
-                )
-                    return false;
+                if (filterData.size > -1) {
+                    if (
+                        !repository.data &&
+                        repository.fetchData?.size &&
+                        repository.fetchData.size === filterData.size
+                    )
+                        return true;
+
+                    if (filterData.size !== repository.data?.size) return false;
+                }
 
                 return true;
             })
         );
 
         setShownRepositories(sortedRepositories);
+
+        const currentPage = searchParams.get("page");
+
+        if (!currentPage) return;
+
+        setPaginationData({
+            ...paginationData,
+            activePage: Number(currentPage) - 1,
+        });
     }, [filterData, repositories]);
     const fromRepos = paginationData.activePage * reposPerPage;
 
@@ -216,6 +278,10 @@ function ProjectsBody() {
                 addStack={addStack}
                 addLanguage={addLanguage}
             />
+
+            {state === PROJECTS_PROVIDER_STATES_ENUM.Loading && (
+                <Loader text={t("pages.projects.loading")} />
+            )}
 
             <div className="max-sm:grid-cols-1 max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 max-2xl:grid-cols-4 p-5 grid grid-cols-4 gap-5 mb-auto">
                 {shownRepositories &&
@@ -275,17 +341,34 @@ function ProjectsBody() {
                                                 )}
                                             </div>
                                         </div>
-                                        <img
-                                            className="h-auto object-contain aspect-square rounded"
-                                            src={
-                                                project.data?.images &&
-                                                project.data.images.length > 0
-                                                    ? project.data.images[0]
-                                                    : placeholderImg
-                                            }
-                                            alt="image"
-                                            loading="lazy"
-                                        />
+                                        {(project.data?.images && (
+                                            <img
+                                                className="h-auto object-contain aspect-square rounded"
+                                                src={
+                                                    project.data.images.length >
+                                                    0
+                                                        ? project.data.images[0]
+                                                        : placeholderImg
+                                                }
+                                                alt="image"
+                                                loading="lazy"
+                                            />
+                                        )) || (
+                                            <img
+                                                className="h-auto object-contain aspect-square rounded"
+                                                src={
+                                                    project.fetchData?.images &&
+                                                    project.fetchData.images
+                                                        .length > 0
+                                                        ? project.fetchData
+                                                              .images[0]
+                                                              .download_url
+                                                        : placeholderImg
+                                                }
+                                                alt="image"
+                                                loading="lazy"
+                                            />
+                                        )}
                                     </div>
                                     <div className="text-center font-semibold flex flex-wrap items-center justify-center py-1 mb-auto">
                                         {getSearchString(
@@ -312,49 +395,11 @@ function ProjectsBody() {
                                     )}
                                     {(project.data && (
                                         <>
-                                            <div className="flex gap-3 justify-between">
-                                                <div>
-                                                    <StackIcon className="w-6 h-6" />
-                                                </div>
-                                                <div className="flex gap-1 justify-end flex-wrap">
-                                                    {(project.data.stack &&
-                                                        project.data.stack
-                                                            .length > 0 &&
-                                                        project.data.stack.map(
-                                                            (
-                                                                framework,
-                                                                key
-                                                            ) => {
-                                                                return (
-                                                                    <MiniTag
-                                                                        key={
-                                                                            key
-                                                                        }
-                                                                        name={
-                                                                            FrameworksNames[
-                                                                                framework
-                                                                            ]
-                                                                        }
-                                                                        onClick={() => {
-                                                                            addStack(
-                                                                                framework
-                                                                            );
-                                                                        }}
-                                                                        isActive={filterData.stack.includes(
-                                                                            framework
-                                                                        )}
-                                                                    />
-                                                                );
-                                                            }
-                                                        )) || (
-                                                        <MiniTag
-                                                            name={t(
-                                                                "projectsStackEnum.None"
-                                                            )}
-                                                        />
-                                                    )}
-                                                </div>
-                                            </div>
+                                            <ProjectStack
+                                                showStack={project.data.stack}
+                                                filterStack={filterData.stack}
+                                                onStackClick={addStack}
+                                            />
 
                                             <ProjectLanguages
                                                 showLanguages={
@@ -366,51 +411,51 @@ function ProjectsBody() {
                                                 onLanguageClick={addLanguage}
                                             />
 
-                                            <div className="flex gap-3 justify-between">
-                                                <div>
-                                                    <RulersIcon className="w-6 h-6" />
-                                                </div>
-                                                <div className="flex gap-1 justify-end flex-wrap">
-                                                    {
-                                                        <MiniTag
-                                                            name={
-                                                                ProjectSizesNames[
-                                                                    project.data
-                                                                        .size
-                                                                ]
-                                                            }
-                                                            onClick={() => {
-                                                                setFilterData(
-                                                                    (
-                                                                        previousFilterData
-                                                                    ) => {
-                                                                        return {
-                                                                            ...previousFilterData,
-                                                                            show: true,
-                                                                            size:
-                                                                                previousFilterData.size >
-                                                                                -1
-                                                                                    ? -1
-                                                                                    : project
-                                                                                          .data
-                                                                                          .size,
-                                                                        };
-                                                                    }
-                                                                );
-                                                            }}
-                                                            isActive={
-                                                                filterData.size ===
-                                                                project.data
-                                                                    .size
-                                                            }
-                                                        />
-                                                    }
-                                                </div>
-                                            </div>
+                                            <ProjectSize
+                                                showSize={project.data.size}
+                                                filterSize={filterData.size}
+                                                onSizeClick={() => {
+                                                    setFilterData(
+                                                        (
+                                                            previousFilterData
+                                                        ) => {
+                                                            const newSize =
+                                                                previousFilterData.size >
+                                                                -1
+                                                                    ? -1
+                                                                    : project
+                                                                          .data
+                                                                          .size;
+
+                                                            setSizeSearchParams(
+                                                                newSize
+                                                            );
+
+                                                            return {
+                                                                ...previousFilterData,
+                                                                show: true,
+                                                                size: newSize,
+                                                            };
+                                                        }
+                                                    );
+                                                }}
+                                            />
                                         </>
                                     )) ||
                                         (project.fetchData && (
                                             <>
+                                                {project.fetchData.stack && (
+                                                    <ProjectStack
+                                                        showStack={
+                                                            project.fetchData
+                                                                .stack.enums
+                                                        }
+                                                        filterStack={
+                                                            filterData.stack
+                                                        }
+                                                        onStackClick={addStack}
+                                                    />
+                                                )}
                                                 {project.fetchData
                                                     .languages && (
                                                     <ProjectLanguages
@@ -426,6 +471,44 @@ function ProjectsBody() {
                                                         }
                                                     />
                                                 )}
+                                                {project.fetchData.size &&
+                                                    project.fetchData.size >
+                                                        -1 && (
+                                                        <ProjectSize
+                                                            showSize={
+                                                                project
+                                                                    .fetchData
+                                                                    .size
+                                                            }
+                                                            filterSize={
+                                                                filterData.size
+                                                            }
+                                                            onSizeClick={() => {
+                                                                setFilterData(
+                                                                    (
+                                                                        previousFilterData
+                                                                    ) => {
+                                                                        const newSize =
+                                                                            previousFilterData.size >
+                                                                            -1
+                                                                                ? -1
+                                                                                : project
+                                                                                      .fetchData
+                                                                                      .size;
+
+                                                                        setSizeSearchParams(
+                                                                            newSize
+                                                                        );
+                                                                        return {
+                                                                            ...previousFilterData,
+                                                                            show: true,
+                                                                            size: newSize,
+                                                                        };
+                                                                    }
+                                                                );
+                                                            }}
+                                                        />
+                                                    )}
                                             </>
                                         ))}
                                     {project.created_at && (

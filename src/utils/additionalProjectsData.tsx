@@ -492,6 +492,9 @@ export async function getProjects() {
             id: 721417620,
             size: PROJECT_SIZES_ENUM.Medium,
             status: PROJECT_STATUSES_ENUM.Finished,
+            gifs: await ImageImporter.importImages(
+                import.meta.glob(`../assets/gifs/BIT-2048-Game/*.gif`)
+            ),
             images: await ImageImporter.importImages(
                 import.meta.glob(
                     `../assets/images/BIT-2048-Game/*.{jpg,jpeg,png,svg}`

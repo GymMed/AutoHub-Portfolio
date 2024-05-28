@@ -2,7 +2,7 @@
     "nav": {
         "Home": "Namai",
         "Projects": "Projektai",
-        "Contact": "Contact Me",
+        "Contact": "Kontaktai",
         "Register": "Registracija",
         "Login": "Prisijungimas"
     },
@@ -11,8 +11,23 @@
             "slides": {
                 "website": {
                     "Dreams": "Siek Savo Svajonių",
-                    "Develop": "Įkurkime svetaine jūsų verslui"
+                    "Develop": "Įkurkime svetainę jūsų verslui",
+                    "Button": "Susisiekti"
+                },
+                "person": {
+                    "Title": "Programinės Įrangos Inžinierius",
+                    "Text": "Didžiuojuosi rašydamas efektyvų ir optimizuotą kodą, kad pasiekčiau išskirtinius rezultatus. Jei ieškote atsidavusio programinės įrangos inžinieriaus, kuris padėtų įgyvendinti jūsų projektus, susisiekime ir aptarkime, kaip galėčiau prisidėti prie jūsų sėkmės.",
+                    "Button": "Susisiekti"
                 }
+            },
+            "owner": {
+                "title": "Programinės Įrangos Inžinierius",
+                "paragraph": "Esu Gytis, kvalifikuotas programinės įrangos inžinierius iš Lietuvos, turintis bakalauro laipsnį programinės įrangos inžinerijos srityje. Turiu praktinės patirties dirbant su Fullstack svetainių kūrimu naudojant Laravel, PHP ir WordPress. Taip pat esu įgudęs naudotis C++, C#, PHP, JavaScript, CSS, HTML, Java ir SQL kalbomis.",
+                "paragraph2": "Didžiuojuosi rašydamas efektyvų ir optimizuotą kodą, kad pasiekčiau išskirtinius rezultatus. Jei ieškote atsidavusio programinės įrangos inžinieriaus, kuris padėtų įgyvendinti jūsų projektus, susisiekime ir aptarkime, kaip galėčiau prisidėti prie jūsų sėkmės."
+            },
+            "projects": {
+                "header": "Projektai",
+                "loadMore": "Daugiau projektų . . ."
             }
         },
         "projects": {
@@ -23,6 +38,7 @@
                 "languages": "Kalbos:",
                 "size": "Dydis:"
             },
+            "loading": "Duomenys apdorojami . . . ",
             "createdAt": "Sukurta:",
             "updatedAt": "Atnaujinta:",
             "pushedAt": "Pakitimai:"
@@ -31,7 +47,22 @@
             "images": "Nuotraukos:",
             "gifs": "Gifs:"
         },
-        "contactMe": {},
+        "contactMe": {
+            "sections": {
+                "MailOwner": {
+                    "header": "Siųskite Laišką Savininkui",
+                    "fullName": "Pilnas Vardas:",
+                    "email": "Elektroninis Paštas:",
+                    "subject": "Tema:",
+                    "message": "Pranešimas:",
+                    "submit": "Siųsti",
+                    "success": "Mes peržiurėsime ir susisieksime netrukus!"
+                },
+                "SocialsOwner": {
+                    "header": "Susisiekti Naudojant:"
+                }
+            }
+        },
         "404": {
             "pageNotFound": "Puslapis nerastas!",
             "pageYouLookingFor": "Atsiprašome, puslapis, kurio ieškote, gali būti nepasiekiamas arba jo nėra. ",
@@ -44,6 +75,13 @@
     "footer": {
         "findMe": "Raskite Mane:",
         "service": "2024 profesionalios programinės įrangos kūrimo paslaugos"
+    },
+
+    "components": {
+        "Loader": {
+            "loading": "Duomenys apdorojami . . . ",
+            "error": "Mes aptikome laikiną klaidą!"
+        }
     },
 
     "projectsStackEnum": {

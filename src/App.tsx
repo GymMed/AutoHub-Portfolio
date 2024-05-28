@@ -8,6 +8,7 @@ import { ROUTES_ENUM } from "./enums/RoutesEnums";
 import Projects from "./components/Routes/Projects/Projects";
 import ProjectView from "./components/Routes/ProjectView/ProjectView";
 import { OwnerProvider } from "./components/General/Contexts/OwnerProvider";
+import ContactMe from "./components/Routes/ContactMe/ContactMe";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     },
     {
         path: AVAILABLE_ROUTES[ROUTES_ENUM.ContactMe].path,
-        element: <ProjectView />,
+        element: <ContactMe />,
     },
     {
         path: "*",

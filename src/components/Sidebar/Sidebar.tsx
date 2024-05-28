@@ -1,8 +1,10 @@
-import { APP_NAME } from "../../utils/constants";
+import { APP_NAME, AVAILABLE_ROUTES } from "../../utils/constants";
 import Navigation from "./Navigation/Navigation";
 import LeftSvg from "../../../src/assets/icons/Left.svg";
 import RightSvg from "../../../src/assets/icons/Right.svg";
 import { useSidebarStateContext } from "../General/Contexts/SidebarStateProvider";
+import { Link } from "react-router-dom";
+import { ROUTES_ENUM } from "../../enums/RoutesEnums";
 
 function Sidebar() {
     const { isOpened, setIsOpened } = useSidebarStateContext();
@@ -28,7 +30,10 @@ function Sidebar() {
                         }
                     >
                         {
-                            <>
+                            <Link
+                                to={AVAILABLE_ROUTES[ROUTES_ENUM.Home].path}
+                                className="cursor-pointer caret-transparent flex"
+                            >
                                 <div>{APP_NAME[0]}</div>
                                 <div
                                     className={
@@ -40,7 +45,7 @@ function Sidebar() {
                                 >
                                     {APP_NAME.substring(1, APP_NAME.length)}
                                 </div>
-                            </>
+                            </Link>
                         }
                         {/* {isOpened ? APP_NAME : APP_NAME[0]} */}
                     </div>
