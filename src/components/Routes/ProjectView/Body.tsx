@@ -4,7 +4,7 @@ import { GithubApi } from "../../../utils/api/GithubAPI";
 import GitIcon from "../../../assets/icons/Git.svg";
 import GlobeIcon from "../../../assets/icons/Globe.svg";
 import ForkIcon from "../../../assets/icons/CodeFork.svg";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import { FetchCacher } from "../../../utils/api/FetchCacher";
 import Previewer from "../../General/Previewer/Previewer";
@@ -12,13 +12,9 @@ import { PREVIEW_TYPES_ENUM } from "../../../enums/PreviewTypesEnum";
 import IconLink from "./IconLink";
 import { PreviewerViewContainerInterface } from "../../../interfaces/PreviewerViewContainerInterface";
 import { GithubRepositoryInterface } from "../../../interfaces/Github/GithubRepositoryInterface";
-import MiniTag from "../../General/MiniTag";
 import { GithubRepositoryFetchDataInterface } from "../../../interfaces/Github/GithubRepositoryFetchDataInterface";
 import { GithubContentItemInteface } from "../../../interfaces/Github/GithubContentItemInteface";
 import RepositoriesProcessor from "../../../utils/RepositoriesProcessor";
-import { AVAILABLE_ROUTES } from "../../../utils/constants";
-import { ROUTES_ENUM } from "../../../enums/RoutesEnums";
-import { ProjectSizesNames } from "../../../enums/ProjectSizesEnum";
 import StackViews from "./Card/StackViews";
 import LanguagesViews from "./Card/LanguagesViews";
 import SizeView from "./Card/SizeView";
@@ -37,8 +33,6 @@ function ProjectViewBody() {
 
     const { t } = useTranslation();
     const { name } = useParams();
-    const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
 
     async function getRepository() {
         if (!name) return;
