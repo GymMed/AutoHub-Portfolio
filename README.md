@@ -18,9 +18,9 @@
 
 ### Description
 
-AutoHub Portfolio(Automatic GitHub Portfolio) uses GitHub API to scrape your public repositories and present their data using conventions. You can always add additional projects, such as private repositories, manually. This project aims to create a quick portfolio without the need for a backend server, reducing expenses for new developers and serving as an example. For frontend contact form I used formspree.
+AutoHub Portfolio(Automatic GitHub Portfolio) uses GitHub API to scrape your public repositories and present their data using conventions. You can always add additional projects, such as private repositories, manually. This project aims to create a quick portfolio without the need for a backend server, reducing expenses for new developers and serving as an example. For frontend contact form I used <a href="https://formspree.io/">formspree</a>.
 
-Highly recommend using something like ScreenToGif to create GIFs of the the project!
+Highly recommend using something like <a href="https://www.screentogif.com/">ScreenToGif</a> to create GIFs of the the project!
 
 ### Prerequisites
 
@@ -44,7 +44,7 @@ All possible sizes variantions can be found in <a href="./src/enums/ProjectSizes
 
 GitHub API has <a target="_blank" href="https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-unauthenticated-users">rate limits</a>. For not registered users maximum is <a href="#rate-limit">60 calls</a> per hour. AutoHub Portfolio uses <a href="./src/utils/api/FetchCacher.tsx">FetchCacher</a> to store fetched data and if limit is reached or error occurs it presents stored data instead.
 
-Version 0.0.1 contains some of my personal information that I do not mind sharing. The project was a bit rushed to be published, and in the following versions, the data will be minimized.
+-   **_ Version 0.0.1 contains some of my personal information that I do not mind sharing. The project was a bit rushed to be published, and in the following versions, the data will be minimized. _**
 
 <div align="center">
   <img id="rate-limit" src="./preview/images/githubNetwork.png" alt="GitHub Rate Limits In Network Tab"/>
