@@ -78,7 +78,7 @@ GitHub API has <a target="_blank" href="https://docs.github.com/en/rest/using-th
 
 **[✔] 3.2 Make GitHub page**
 
--   Make GitHub page.
+-   Make GitHub page. Recommend <a target="_blank" href="https://www.youtube.com/watch?v=XhoWXhyuW_I">this tutorial</a> for people who do not know how to deploy Vite React App.
 
 ## Used assets
 
