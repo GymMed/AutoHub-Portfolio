@@ -1,5 +1,3 @@
-# Express Forum Template
-
 <h1 align="center">
     AutoHub Portfolio
 </h1>
