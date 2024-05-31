@@ -20,6 +20,7 @@ import { ProjectsFilterDataInterface } from "../../../interfaces/ProjectsFilterD
 import CrossIcon from "../../../assets/icons/Cross.svg";
 import FullSelectItem from "../../General/FullSelectItem";
 import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface ProjectsFilter {
     projects: GithubRepositoryInterface[];
@@ -38,6 +39,22 @@ function ProjectsFilter({
 }: ProjectsFilter) {
     const { t } = useTranslation();
     const [searchParam, setSearchParam] = useSearchParams();
+    //add classes for filter animation end
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    useEffect(() => {
+        if (isAnimating) {
+            const timer = setTimeout(() => {
+                setIsAnimating(false);
+            }, 700);
+
+            return () => clearTimeout(timer); // Cleanup the timer on unmount
+        }
+    }, [isAnimating]);
+
+    const triggerAnimation = () => {
+        setIsAnimating(true);
+    };
 
     const sizeOptions = Object.keys(PROJECT_SIZES_ENUM)
         .filter((value) => !isNaN(Number(value)))
@@ -70,6 +87,7 @@ function ProjectsFilter({
                                 ...filterData,
                                 show: !filterData.show,
                             });
+                            triggerAnimation();
                         }}
                     >
                         <FilterIcon className="w-6 h-6" />
@@ -79,8 +97,11 @@ function ProjectsFilter({
 
             <div
                 className={
-                    (filterData.show ? `max-h-[60rem] ` : "max-h-0 ") +
-                    "overflow-hidden transition-all duration-700 rounded w-full"
+                    (filterData.show
+                        ? `max-h-[60rem] `
+                        : "max-h-0 overflow-hidden ") +
+                    (isAnimating ? "overflow-hidden " : "") +
+                    " transition-all duration-700 rounded w-full"
                 }
             >
                 <div className="mt-3 flex flex-col items-center gap-3">

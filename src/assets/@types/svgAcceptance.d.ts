@@ -1,4 +1,4 @@
-// svg.d.ts
+// src/assets/@types/svgAcceptance.d.ts
 /// <reference types="vite-plugin-svgr/client" />
 
 // declare module "*.svg" {

@@ -23,7 +23,8 @@
             "owner": {
                 "title": "Programinės Įrangos Inžinierius",
                 "paragraph": "Esu Gytis, kvalifikuotas programinės įrangos inžinierius iš Lietuvos, turintis bakalauro laipsnį programinės įrangos inžinerijos srityje. Turiu praktinės patirties dirbant su Fullstack svetainių kūrimu naudojant Laravel, PHP ir WordPress. Taip pat esu įgudęs naudotis C++, C#, PHP, JavaScript, CSS, HTML, Java ir SQL kalbomis.",
-                "paragraph2": "Didžiuojuosi rašydamas efektyvų ir optimizuotą kodą, kad pasiekčiau išskirtinius rezultatus. Jei ieškote atsidavusio programinės įrangos inžinieriaus, kuris padėtų įgyvendinti jūsų projektus, susisiekime ir aptarkime, kaip galėčiau prisidėti prie jūsų sėkmės."
+                "paragraph2": "Didžiuojuosi rašydamas efektyvų ir optimizuotą kodą, kad pasiekčiau išskirtinius rezultatus. Jei ieškote atsidavusio programinės įrangos inžinieriaus, kuris padėtų įgyvendinti jūsų projektus, susisiekime ir aptarkime, kaip galėčiau prisidėti prie jūsų sėkmės.",
+                "button": "Susisiekti"
             },
             "projects": {
                 "header": "Projektai",

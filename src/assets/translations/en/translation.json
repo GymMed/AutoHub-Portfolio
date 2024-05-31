@@ -22,8 +22,9 @@
             },
             "owner": {
                 "title": "Software Engineer",
-                "paragraph": "I'm Gytis, a skilled software engineer from Lithuania with a prestigious bachelor's degree in software engineering. With hands-on experience in full-stack web development using Laravel, PHP, and WordPress. I offer expertise in C++, C#, PHP, JavaScript, CSS, HTML, Java, and SQL.",
-                "paragraph2": "I take pride in writing clean, efficient code to deliver exceptional results. If you're looking for a dedicated software engineer to bring your projects to life, let's connect and discuss how I can contribute to your success."
+                "paragraph": "I'm Gytis, a skilled software developer from Lithuania with a prestigious bachelor's degree in software engineering. With hands-on experience in full-stack web development using Laravel, PHP, and WordPress. I offer expertise in C++, C#, PHP, JavaScript, CSS, HTML, Java, and SQL.",
+                "paragraph2": "I take pride in writing clean, efficient code to deliver exceptional results. If you're looking for a dedicated software engineer to bring your projects to life, let's connect and discuss how I can contribute to your success.",
+                "button": "Contact"
             },
             "projects": {
                 "header": "Projects",
