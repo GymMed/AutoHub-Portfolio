@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import Select from "./Select";
 import { useTranslation } from "react-i18next";
 import { AVAILABLE_SELECT_LANGUAGES } from "../../utils/constants";
+import { i18n } from "i18next";
 
 function onChangeLanguage(event: ChangeEvent<HTMLSelectElement>, i18n: i18n) {
     const language = event.target.value;

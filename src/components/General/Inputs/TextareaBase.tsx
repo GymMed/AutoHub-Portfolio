@@ -11,7 +11,7 @@ function TextareaBase({
     id = "",
     cols = 30,
     rows = 10,
-    required = false,
+    required = true,
 }: TextareaBaseInterface) {
     return (
         <textarea
@@ -20,6 +20,7 @@ function TextareaBase({
             id={id}
             cols={cols}
             rows={rows}
+            {...(required ? { required: true } : {})}
         ></textarea>
     );
 }

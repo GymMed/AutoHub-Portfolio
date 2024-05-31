@@ -29,7 +29,7 @@ function CarouselControllers({
             </button>
             <div className="caret-transparent pointer-events-auto self-end p-5 flex items-center justify-center gap-3">
                 {totalSlides > 0 &&
-                    [...Array(totalSlides)].map((value, key) => {
+                    [...Array(totalSlides)].map((_, key) => {
                         return (
                             <div
                                 key={key}

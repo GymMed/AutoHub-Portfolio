@@ -125,7 +125,7 @@ function Paginator({
                     : 1}
             </PaginationButton>
             {rightSide > -1 &&
-                [...Array(rightSide)].map((value, key) => {
+                [...Array(rightSide)].map((_, key) => {
                     return (
                         <PaginationButton
                             key={key}
