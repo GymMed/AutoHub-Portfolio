@@ -5,7 +5,11 @@ declare module "*.svg" {
 
     const ReactComponent: React.FunctionComponent<
         // React.SVGProps<SVGSVGElement> & { className?: string }
-        React.ComponentProps<"svg"> & { className?: string }
+        React.ComponentProps<"svg"> & {
+            className?: string;
+            width?: string;
+            height?: string;
+        }
     >;
 
     export default ReactComponent;
