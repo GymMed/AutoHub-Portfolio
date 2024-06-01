@@ -1,12 +1,13 @@
 import calendarImg from "../assets/images/2023-calendar-img.png";
-import { DATABASES_ENUM } from "../enums/DatabasesEnum";
+// import { DATABASES_ENUM } from "../enums/DatabasesEnum";
 import { FRAMEWORKS_ENUM } from "../enums/FrameworksEnum";
 import { PROGRAMMING_LANGUAGES_ENUM } from "../enums/LanguagesEnum";
 import { PROJECT_SIZES_ENUM } from "../enums/ProjectSizesEnum";
 import { PROJECT_STATUSES_ENUM } from "../enums/ProjectStatusEnum";
+import { GithubAdditionalDataInterface } from "../interfaces/Github/GithubAdditionalDataInterface";
 import ImageImporter from "./ImageImporter";
 
-export async function getProjects() {
+export async function getProjects(): Promise<GithubAdditionalDataInterface[]> {
     return [
         {
             id: 712495665,
@@ -719,7 +720,7 @@ export async function getProjects() {
                     `../assets/images/TestTask/*.{jpg,jpeg,png,svg}`
                 )
             ),
-            database: DATABASES_ENUM.MySQL,
+            // database: DATABASES_ENUM.MySQL,
             stack: [
                 FRAMEWORKS_ENUM.Laravel,
                 FRAMEWORKS_ENUM.Vue,

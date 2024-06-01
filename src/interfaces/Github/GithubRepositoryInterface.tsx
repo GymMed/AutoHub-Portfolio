@@ -1,3 +1,4 @@
+import { GithubAdditionalDataInterface } from "./GithubAdditionalDataInterface";
 import { GithubRepositoryFetchDataInterface } from "./GithubRepositoryFetchDataInterface";
 
 interface RepostiroyLicenseInterface {
@@ -30,7 +31,7 @@ interface RepositoryOwnerInterface {
 }
 
 export interface GithubRepositoryInterface {
-    data?: object;
+    data?: GithubAdditionalDataInterface;
     fetchData?: GithubRepositoryFetchDataInterface;
     id: number;
     node_id: string;

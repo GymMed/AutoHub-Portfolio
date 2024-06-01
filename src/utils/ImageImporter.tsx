@@ -15,12 +15,8 @@ class ImageImporter {
         for (const path in imageFiles) {
             const image = await imageFiles[path]();
 
-            if (
-                !image ||
-                !Object.prototype.hasOwnProperty.call(image, "default")
-            )
+            if (!image || !(typeof image === "object" && "default" in image))
                 continue;
-
             images.push(image.default);
             // const fullName = getLastSplitElement(path, "/");
             // const extension = getLastSplitElement(path, ".");
@@ -32,7 +28,7 @@ class ImageImporter {
             // images[name] = image.default;
         }
 
-        return images;
+        return images as string[];
     }
 }
 

@@ -27,7 +27,9 @@ function ProjectCard({ repository }: ProjectCardInterface) {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [view, setView] = useState<string | null>(repository.data?.images[0]);
+    const [view, setView] = useState<string | undefined>(
+        repository.data?.images?.[0]
+    );
     const placeholdImage = "https://placehold.co/250x250";
     const iconsClasses = "text-light-500";
 
@@ -40,7 +42,7 @@ function ProjectCard({ repository }: ProjectCardInterface) {
                 }
             }}
             onMouseLeave={() => {
-                setView(repository.data?.images[0]);
+                setView(repository.data?.images?.[0]);
             }}
         >
             <div

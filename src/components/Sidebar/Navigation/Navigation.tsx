@@ -15,7 +15,9 @@ export default function Navigation() {
                         <NavigationLink
                             key={key}
                             icon={route.icon}
-                            text={t(`nav.${route.name}`)}
+                            text={t(
+                                `nav.${route.name}` as unknown as TemplateStringsArray
+                            )}
                             url={route.path}
                         />
                     );

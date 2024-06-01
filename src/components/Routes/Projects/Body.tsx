@@ -421,7 +421,8 @@ function ProjectsBody() {
                                                         ) => {
                                                             const newSize =
                                                                 previousFilterData.size >
-                                                                -1
+                                                                    -1 ||
+                                                                !project.data
                                                                     ? -1
                                                                     : project
                                                                           .data
@@ -488,13 +489,22 @@ function ProjectsBody() {
                                                                     (
                                                                         previousFilterData
                                                                     ) => {
-                                                                        const newSize =
-                                                                            previousFilterData.size >
-                                                                            -1
-                                                                                ? -1
-                                                                                : project
-                                                                                      .fetchData
-                                                                                      .size;
+                                                                        let newSize =
+                                                                            -1;
+                                                                        if (
+                                                                            !(
+                                                                                previousFilterData.size >
+                                                                                -1
+                                                                            ) &&
+                                                                            project
+                                                                                .fetchData
+                                                                                ?.size
+                                                                        ) {
+                                                                            newSize =
+                                                                                project
+                                                                                    .fetchData
+                                                                                    .size;
+                                                                        }
 
                                                                         setSizeSearchParams(
                                                                             newSize

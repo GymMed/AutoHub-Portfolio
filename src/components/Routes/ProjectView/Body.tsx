@@ -18,6 +18,7 @@ import RepositoriesProcessor from "../../../utils/RepositoriesProcessor";
 import StackViews from "./Card/StackViews";
 import LanguagesViews from "./Card/LanguagesViews";
 import SizeView from "./Card/SizeView";
+import { GithubAdditionalDataInterface } from "../../../interfaces/Github/GithubAdditionalDataInterface";
 
 interface RepositoryDataInterface {
     repository: GithubRepositoryInterface | null;
@@ -91,7 +92,7 @@ function ProjectViewBody() {
         return views;
     }
 
-    function getViews(reposData: object) {
+    function getViews(reposData: GithubAdditionalDataInterface) {
         const views: PreviewerViewContainerInterface[] = [];
 
         if (reposData.gifs && reposData.gifs.length > 0) {
