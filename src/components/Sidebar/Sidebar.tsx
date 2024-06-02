@@ -19,7 +19,7 @@ function Sidebar() {
             <header
                 className={
                     getClassBasedOnSidebar(isOpened) +
-                    "fixed duration-1000 transform min-h-screen shadow-lg text-light-500 dark:text-light-400 flex flex-col justify-between py-5 px-2 bg-white dark:bg-dark-eval-1"
+                    "h-full fixed duration-1000 transform min-h-screen shadow-lg text-light-500 dark:text-light-400 flex flex-col justify-between py-5 px-2 bg-white dark:bg-dark-eval-1"
                 }
             >
                 <div className="flex flex-col gap-5">

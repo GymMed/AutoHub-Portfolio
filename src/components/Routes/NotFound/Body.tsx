@@ -7,7 +7,7 @@ function NotFoundBody() {
     const { t } = useTranslation();
 
     return (
-        <div className="my-auto flex items-center justify-center w-full p-10">
+        <div className="text-center my-auto flex items-center justify-center w-full p-10">
             <div className="flex flex-col gap-3 items-center justify-center bg-gradient-to-br from-primary-500 to-primary-700 p-5 rounded-lg shadow-lg text-white">
                 <div className="font-bold text-3xl">404</div>
                 <div className="font-semibold text-xl">

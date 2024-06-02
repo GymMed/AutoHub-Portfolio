@@ -10,28 +10,33 @@ import ProjectView from "./components/Routes/ProjectView/ProjectView";
 import { OwnerProvider } from "./components/General/Contexts/OwnerProvider";
 import ContactMe from "./components/Routes/ContactMe/ContactMe";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            path: AVAILABLE_ROUTES[ROUTES_ENUM.Home].path,
+            element: <Root />,
+        },
+        {
+            path: AVAILABLE_ROUTES[ROUTES_ENUM.Projects].path,
+            element: <Projects />,
+        },
+        {
+            path: AVAILABLE_ROUTES[ROUTES_ENUM.ProjectView].path,
+            element: <ProjectView />,
+        },
+        {
+            path: AVAILABLE_ROUTES[ROUTES_ENUM.ContactMe].path,
+            element: <ContactMe />,
+        },
+        {
+            path: "*",
+            element: <NotFound />,
+        },
+    ],
     {
-        path: AVAILABLE_ROUTES[ROUTES_ENUM.Home].path,
-        element: <Root />,
-    },
-    {
-        path: AVAILABLE_ROUTES[ROUTES_ENUM.Projects].path,
-        element: <Projects />,
-    },
-    {
-        path: AVAILABLE_ROUTES[ROUTES_ENUM.ProjectView].path,
-        element: <ProjectView />,
-    },
-    {
-        path: AVAILABLE_ROUTES[ROUTES_ENUM.ContactMe].path,
-        element: <ContactMe />,
-    },
-    {
-        path: "*",
-        element: <NotFound />,
-    },
-]);
+        basename: import.meta.env.BASE_URL,
+    }
+);
 
 function App() {
     return (

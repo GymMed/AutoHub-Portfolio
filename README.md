@@ -60,13 +60,13 @@ GitHub API has <a target="_blank" href="https://docs.github.com/en/rest/using-th
 
 **[✔] 2.1 Change GitHub User to scrape data from**
 
--   Locate `src/utils/api/githubAPI` and in class `GithubApi` change `static name = "Your GitHub User Name"`.
+-   Locate <a href="src/utils/api/githubAPI.tsx">`src/utils/api/githubAPI`</a> and in class `GithubApi` change `static name = "Your GitHub User Name"`.
 
-**[✔] 1.2 Install dependencies**
+**[✔] 2.2 Install dependencies**
 
 -   Run `npm install` in the root directory to install the required packages.
 
-**[✔] 1.3 Build the project**
+**[✔] 2.3 Build the project**
 
 -   Use `npm run build` to build project.
 
@@ -79,6 +79,26 @@ GitHub API has <a target="_blank" href="https://docs.github.com/en/rest/using-th
 **[✔] 3.2 Make GitHub page**
 
 -   Make GitHub page. Recommend <a target="_blank" href="https://www.youtube.com/watch?v=XhoWXhyuW_I">this tutorial</a> for people who do not know how to deploy Vite React App.
+
+**[✔] 3.3 Fix Routes for GitHub Page**
+
+-   In <a href="./package.json">`package.json`</a> edit these lines
+
+```
+  "scripts": {
+      "dev": "vite --base=/AutoHub-Portfolio",
+      "build": "tsc && vite build --base=/AutoHub-Portfolio",
+```
+
+instead of "/AutoHub-Portfolio" use your own repository name
+
+-   In <a href="./vite.config.ts">`vite.config.ts`</a> edit base path
+
+```
+  base: "/AutoHub-Portfolio/",
+```
+
+to your own repository name
 
 ## Used assets
 
