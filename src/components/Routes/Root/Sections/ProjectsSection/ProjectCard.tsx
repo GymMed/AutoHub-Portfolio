@@ -59,7 +59,7 @@ function ProjectCard({ repository }: ProjectCardInterface) {
                 />
             </div>
 
-            <div className="max-lg:text-3xl text-light-500 dark:text-white text-center font-semibold mb-auto">
+            <div className="max-lg:text-3xl max-md:text-2xl max-sm:text-xl text-light-500 dark:text-white text-center font-semibold mb-auto">
                 {repository.name.replace(/-/g, " ")}
             </div>
 

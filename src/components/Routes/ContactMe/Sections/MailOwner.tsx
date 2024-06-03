@@ -27,7 +27,7 @@ function MailOwner() {
                 {t("pages.contactMe.sections.MailOwner.header")}
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                <div className="flex gap-3 w-full">
+                <div className="flex gap-3 w-full max-sm:flex-col">
                     <FullInput
                         labelHeader={t(
                             "pages.contactMe.sections.MailOwner.fullName"

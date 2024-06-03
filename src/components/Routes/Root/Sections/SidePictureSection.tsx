@@ -14,7 +14,7 @@ function SidePictureSection() {
             <div className="mt-5 w-full h-full flex items-center justify-between gap-3 max-md:flex-col">
                 <div className="w-full h-full flex items-center justify-center gap-3 max-md:order-2">
                     <div className="flex flex-col gap-3 mx-10">
-                        <div className="tracking-wider text-3xl font-bold">
+                        <div className="max-md:text-center tracking-wider text-3xl font-bold">
                             {t("pages.home.owner.title")}
                         </div>
                         <div className="text-xl flex gap-3 flex-col text-justify">
