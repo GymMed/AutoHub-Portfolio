@@ -165,7 +165,7 @@ function ProjectViewBody() {
                         </div>
                         <div className="flex flex-col gap-3 rounded shadow-lg p-3 bg-white dark:bg-dark-eval-1">
                             <div className="flex justify-between items-center">
-                                <div>View:</div>
+                                <div>{t("pages.projectView.body.view")}</div>
                                 <div className="flex gap-3 items-center justify-center">
                                     <IconLink
                                         href={
@@ -251,7 +251,11 @@ function ProjectViewBody() {
 
                             {repositoryData.repository.description && (
                                 <div className="flex justify-between gap-3">
-                                    <div>Description (not translatable):</div>
+                                    <div>
+                                        {t(
+                                            "pages.projectView.body.description"
+                                        )}
+                                    </div>
                                     <div>
                                         {repositoryData.repository.description}
                                     </div>
@@ -259,7 +263,7 @@ function ProjectViewBody() {
                             )}
 
                             <div className="flex justify-between">
-                                <div>Created On GitHub At:</div>
+                                <div>{t("pages.projectView.body.created")}</div>
                                 <div>
                                     {formatDate(
                                         repositoryData.repository.created_at
@@ -267,7 +271,7 @@ function ProjectViewBody() {
                                 </div>
                             </div>
                             <div className="flex justify-between">
-                                <div>Updated On GitHub At:</div>
+                                <div>{t("pages.projectView.body.updated")}</div>
                                 <div>
                                     {formatDate(
                                         repositoryData.repository.updated_at
@@ -275,7 +279,7 @@ function ProjectViewBody() {
                                 </div>
                             </div>
                             <div className="flex justify-between">
-                                <div>Last Push To GitHub At:</div>
+                                <div>{t("pages.projectView.body.pushed")}</div>
                                 <div>
                                     {formatDate(
                                         repositoryData.repository.pushed_at

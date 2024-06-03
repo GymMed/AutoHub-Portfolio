@@ -62,7 +62,7 @@ function CarouselSection() {
                                     {t("pages.home.slides.person.Text")}
                                 </div>
                             </div>
-                            <div className="xs:block hidden z-10">
+                            <div className="max-sm:block hidden z-10">
                                 <CarouselHightlightButton
                                     onClick={() => {
                                         navigate(
@@ -76,7 +76,7 @@ function CarouselSection() {
                             </div>
                             <div className="absolute h-full w-full flex items-end">
                                 <div className="relative bg-sections-profile w-full h-[26%] p-2 xs:hidden">
-                                    <div className="absolute w-full z-10">
+                                    <div className="max-sm:hidden absolute w-full z-10">
                                         <CarouselHightlightButton
                                             onClick={() => {
                                                 navigate(

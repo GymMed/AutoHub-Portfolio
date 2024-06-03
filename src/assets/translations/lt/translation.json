@@ -46,7 +46,17 @@
         },
         "projectView": {
             "images": "Nuotraukos:",
-            "gifs": "Gifs:"
+            "gifs": "GIFs:",
+            "body": {
+                "view": "Peržiūrėti:",
+                "stack": "Įrankiai:",
+                "languages": "Kalbos:",
+                "size": "Dydis:",
+                "description": "Aprašymas (neišverčiamas):",
+                "created": "Sukurtas GitHub'e:",
+                "updated": "Atnaujintas GitHub'e:",
+                "pushed": "Paskutinį kartą perduoti duomenys į GitHub'ą:"
+            }
         },
         "contactMe": {
             "sections": {

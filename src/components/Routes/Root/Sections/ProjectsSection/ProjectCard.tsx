@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { GithubRepositoryInterface } from "../../../../../interfaces/Github/GithubRepositoryInterface";
 import { useState } from "react";
 import ProjectLanguages from "../../../Projects/Card/ProjectLanguages";
@@ -59,9 +59,12 @@ function ProjectCard({ repository }: ProjectCardInterface) {
                 />
             </div>
 
-            <div className="max-lg:text-3xl max-md:text-2xl max-sm:text-xl text-light-500 dark:text-white text-center font-semibold mb-auto">
+            <Link
+                to={`/projects/${repository.name}/view`}
+                className="hover:animate-pulse hover:text-blue-500 hover:dark:text-blue-300 max-lg:text-3xl max-md:text-2xl max-sm:text-xl text-light-500 dark:text-white text-center font-semibold mb-auto"
+            >
                 {repository.name.replace(/-/g, " ")}
-            </div>
+            </Link>
 
             {repository.data && (
                 <div className="flex flex-col gap-2 text-white p-2">

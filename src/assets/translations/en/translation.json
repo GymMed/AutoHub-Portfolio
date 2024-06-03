@@ -46,7 +46,17 @@
         },
         "projectView": {
             "images": "Images:",
-            "gifs": "Gifs:"
+            "gifs": "GIFs:",
+            "body": {
+                "view": "View:",
+                "stack": "Stack:",
+                "languages": "Languages:",
+                "size": "Size:",
+                "description": "Description (not translatable):",
+                "created": "Created On GitHub At:",
+                "updated": "Updated On GitHub At:",
+                "pushed": "Last Push To GitHub At:"
+            }
         },
         "contactMe": {
             "sections": {

@@ -7,6 +7,7 @@ import { ROUTES_ENUM } from "../../../../enums/RoutesEnums";
 import { AVAILABLE_ROUTES } from "../../../../utils/constants";
 import ViewMiniTags from "./ViewMiniTags";
 import MiniTag from "../../../General/MiniTag";
+import { useTranslation } from "react-i18next";
 
 interface StackViewsInterface {
     stack: FRAMEWORKS_ENUM[];
@@ -15,10 +16,11 @@ interface StackViewsInterface {
 function StackViews({ stack }: StackViewsInterface) {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <ViewMiniTags
-            headerText={"Stack:"}
+            headerText={t("pages.projectView.body.stack")}
             showItems={stack}
             miniTag={(framework, key) => {
                 return (

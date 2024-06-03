@@ -6,6 +6,7 @@ import {
 import { ROUTES_ENUM } from "../../../../enums/RoutesEnums";
 import { AVAILABLE_ROUTES } from "../../../../utils/constants";
 import MiniTag from "../../../General/MiniTag";
+import { useTranslation } from "react-i18next";
 
 interface SizeViewInterface {
     sizeEnum: PROJECT_SIZES_ENUM;
@@ -14,10 +15,11 @@ interface SizeViewInterface {
 function SizeView({ sizeEnum }: SizeViewInterface) {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <div className="flex justify-between">
-            <div>{"Size:"}</div>
+            <div>{t("pages.projectView.body.size")}</div>
             <div className="text-white flex gap-1 items-center justify-center">
                 <MiniTag
                     name={ProjectSizesNames[sizeEnum]}

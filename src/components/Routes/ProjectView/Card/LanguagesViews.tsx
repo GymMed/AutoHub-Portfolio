@@ -7,6 +7,7 @@ import MiniTag from "../../../General/MiniTag";
 import ViewMiniTags from "./ViewMiniTags";
 import { AVAILABLE_ROUTES } from "../../../../utils/constants";
 import { ROUTES_ENUM } from "../../../../enums/RoutesEnums";
+import { useTranslation } from "react-i18next";
 
 interface LanguagesViewsInterface {
     languages: PROGRAMMING_LANGUAGES_ENUM[];
@@ -15,10 +16,11 @@ interface LanguagesViewsInterface {
 function LanguagesViews({ languages }: LanguagesViewsInterface) {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <ViewMiniTags
-            headerText={"Languages:"}
+            headerText={t("pages.projectView.body.languages")}
             showItems={languages}
             miniTag={(language, key) => {
                 return (
