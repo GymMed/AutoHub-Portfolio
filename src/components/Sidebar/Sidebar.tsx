@@ -19,7 +19,7 @@ function Sidebar() {
             <header
                 className={
                     getClassBasedOnSidebar(isOpened) +
-                    "h-full fixed duration-1000 transform min-h-screen shadow-lg text-light-500 dark:text-light-400 flex flex-col justify-between py-5 px-2 bg-white dark:bg-dark-eval-1"
+                    "z-20 fixed duration-1000 transform min-h-screen shadow-lg text-light-500 dark:text-light-400 flex flex-col justify-between py-5 px-2 bg-white dark:bg-dark-eval-1"
                 }
             >
                 <div className="flex flex-col gap-5">
@@ -87,7 +87,7 @@ function Sidebar() {
             <div
                 className={
                     getClassBasedOnSidebar(isOpened) +
-                    "-z-10 py-5 px-2 border-l-2 duration-1000 transform min-h-screen"
+                    "max-sm:w-16 max-sm:min-w-16 -z-10 py-5 px-2 border-l-2 duration-1000 transform min-h-screen"
                 }
             ></div>
         </>
