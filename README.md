@@ -16,9 +16,9 @@
 
 ### Description
 
-AutoHub Portfolio(Automatic GitHub Portfolio) uses GitHub API to scrape your public repositories and present their data using conventions. You can always add additional projects, such as private repositories, manually. This project aims to create a quick portfolio without the need for a backend server, reducing expenses for new developers and serving as an example. For frontend contact form I used <a href="https://formspree.io/">formspree</a>.
+AutoHub Portfolio(Automatic GitHub Portfolio) uses GitHub API to scrape your public repositories and present their data using conventions. You can always add additional projects, such as private repositories, manually. This project aims to create a quick portfolio without the need for a backend server, reducing expenses for new developers and serving as an example. For frontend contact form I used <a target="_blank" href="https://formspree.io/">formspree</a>. Currently project uses <a target="_blank" href="https://www.i18next.com/">i18next</a> for translations.
 
-Highly recommend using something like <a href="https://www.screentogif.com/">ScreenToGif</a> to create GIFs of the the project!
+Highly recommend using something like <a target="_blank" href="https://www.screentogif.com/">ScreenToGif</a> to create GIFs of the the project!
 
 ### Prerequisites
 
@@ -37,6 +37,7 @@ Repositories pages follows mostly similiar information flow and includes descrip
 All possible stack variantions can be found in <a href="./src/enums/FrameworksEnum.tsx">`src/enums/FrameworksEnum.tsx`</a>. It includes not only `frameworks`.
 All possible languages variantions can be found in <a href="./src/enums/LanguagesEnum.tsx">`src/enums/LanguagesEnum.tsx`</a>. It includes not only `Programming` languages.
 All possible sizes variantions can be found in <a href="./src/enums/ProjectSizesEnum.tsx">`src/enums/ProjectSizesEnum.tsx`</a>.
+Languages strings can be found in <a href="./src/assets/translations">`src/assets/translations`</a>.
 
 ### Important information
 
@@ -60,7 +61,7 @@ GitHub API has <a target="_blank" href="https://docs.github.com/en/rest/using-th
 
 **[✔] 2.1 Change GitHub User to scrape data from**
 
--   Locate <a href="src/utils/api/githubAPI.tsx">`src/utils/api/githubAPI`</a> and in class `GithubApi` change `static name = "Your GitHub User Name"`.
+-   Locate <a href="src/utils/api/GithubAPI.tsx">`src/utils/api/GithubAPI`</a> and in class `GithubApi` change `static name = "Your GitHub User Name"`.
 
 **[✔] 2.2 Install dependencies**
 
